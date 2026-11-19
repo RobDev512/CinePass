@@ -14,23 +14,16 @@ CinePass es una aplicación web para consultar películas, elegir funciones, sel
 
 Sigue estos pasos **en tu propia computadora**. Los comandos se pueden ejecutar desde **PowerShell** o desde la terminal de Visual Studio Code.
 
-### 1. Instalar los programas necesarios
+### 1. Comprobar Node.js y npm
 
-Instala:
-
-1. **Node.js, versión LTS:** https://nodejs.org/ (incluye npm).
-2. **Git para Windows:** https://git-scm.com/downloads/win
-3. **Visual Studio Code (recomendado):** https://code.visualstudio.com/
-
-Después de instalar Node.js y Git, **cierra y vuelve a abrir PowerShell o VS Code**. Comprueba que funcionan con estos comandos:
+Para ejecutar CinePass necesitas **Node.js**, que incluye npm. Comprueba que ya los tienes instalados:
 
 ```powershell
 node --version
 npm --version
-git --version
 ```
 
-Cada comando debe mostrar un número de versión. Si alguno no se reconoce, comprueba su instalación antes de continuar.
+Ambos comandos deben mostrar un número de versión. Si te falta Node.js, instala la versión LTS desde https://nodejs.org/ y vuelve a abrir la terminal.
 
 ### 2. Descargar el proyecto con Git
 
