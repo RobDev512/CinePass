@@ -367,3 +367,41 @@ a:focus-visible, button:focus-visible { outline: 2px solid #ff9ba4; outline-offs
     .marca { justify-content: center; }
     .version-chip { font-size: 10px; }
 }
+
+/* =========================================================
+   CINEPASS - ENLACES EN EL FOOTER (ROADMAP)
+   ========================================================= */
+.pie-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pie-contenido p {
+    flex: 1 1 360px;
+}
+
+.pie-enlaces {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    font-size: 13px;
+}
+
+.pie-enlaces a {
+    color: #ff9ba4;
+}
+
+.pie-enlaces a:hover,
+.pie-enlaces a:focus-visible {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .pie-contenido { align-items: flex-start; }
+    .pie-enlaces { gap: 10px 16px; }
+}
