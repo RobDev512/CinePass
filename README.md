@@ -1,5 +1,7 @@
 # CinePass 🎬
 
+**Versión actual: v0.2.0 — Primera proyección** · Prototipo público.
+
 Proyecto final de **Programación Web**.
 
 CinePass es una aplicación web para consultar películas, elegir funciones, seleccionar asientos y gestionar reservaciones y boletos digitales. El proyecto se encuentra en desarrollo: algunas pantallas y funcionalidades todavía son propuestas.
@@ -131,6 +133,16 @@ git push -u origin feat/nombre-del-modulo
 En GitHub, crea un **Pull Request** desde tu rama hacia `main` para revisar e integrar el trabajo. Sustituye `nombre-del-modulo` por un nombre descriptivo y distinto al de tus compañeros.
 
 > **No ejecutes `git init` dentro de la copia clonada**, porque ya es un repositorio Git. Tampoco subas `node_modules`, credenciales ni contraseñas.
+
+## Versiones y roadmap
+
+CinePass utiliza versiones con nombre. La actual es **v0.2.0 — Primera proyección**: Inicio y Cartelera V2 están publicados, pero las reservaciones y el CRUD todavía no están terminados.
+
+- 🗺️ [Roadmap visual interactivo](https://robdev512.github.io/CinePass/roadmap.html) — etapas, filtros y responsables.
+- 📝 [ROADMAP.md](public/docs/ROADMAP.md) — documento editable que alimenta la visualización.
+- 🎞️ [Ver la demostración conceptual en la web](https://robdev512.github.io/CinePass/demo.html) — reproductor en GitHub Pages y enlace alternativo de descarga.
+
+La versión se muestra en las páginas mediante `public/data/version.json`. Cuando se publique una actualización, hay que cambiar ese archivo, `package.json`, `package-lock.json`, el nombre de versión aquí y la etapa correspondiente del roadmap.
 
 ## Material de referencia
 

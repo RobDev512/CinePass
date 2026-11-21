@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Roadmap de versiones, avances y tareas pendientes de CinePass.">
+    <title>Roadmap | CinePass</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/paginas-informativas.css">
+    <script src="js/version.js" defer></script>
+    <script src="js/roadmap.js" defer></script>
+</head>
+<body>
+<header class="encabezado">
+    <div class="contenedor barra">
+        <div class="marca">
+            <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio"><img src="img/logo-cinepass.svg" alt="">Cine<span>Pass</span></a>
+            <span class="version-chip" data-version>v0.2.0 · Primera proyección</span>
+        </div>
+        <nav class="menu" aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="cartelera.html">Cartelera</a>
+            <a href="index.html#proximamente">Mis boletos</a>
+            <a href="index.html#proximamente">Administración</a>
+            <a class="activo" aria-current="page" href="roadmap.html">Roadmap</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <section class="info-hero">
+        <div class="contenedor">
+            <p class="etiqueta">BITÁCORA DE PRODUCCIÓN · EN CONSTRUCCIÓN</p>
+            <h1>El camino hacia el <span>gran estreno.</span></h1>
+            <p>Estas son las versiones publicadas, las que está preparando el equipo y las que queremos construir. Asignado no significa terminado.</p>
+            <div class="info-metadatos">
+                <span data-version>v0.2.0 · Primera proyección</span>
+                <span>Prototipo público</span>
+                <span id="resumen-roadmap">Cargando progreso…</span>
+            </div>
+            <div class="info-acciones">
+                <a class="boton" href="cartelera.html">Explorar cartelera</a>
+                <a class="boton boton-secundario" href="demo.html">Ver demo conceptual</a>
+            </div>
+        </div>
+    </section>
+    <section class="contenedor seccion" aria-labelledby="titulo-roadmap">
+        <p class="etiqueta">EVOLUCIÓN DE CINEPASS</p>
+        <h2 id="titulo-roadmap">Roadmap por versiones</h2>
+        <p class="descripcion">La información proviene de ROADMAP.md, como en PW Hub. Filtra las etapas y consulta sus responsables.</p>
+        <div class="roadmap-filtros" role="group" aria-label="Filtrar versiones">
+            <button data-filtro-roadmap="todas" class="seleccionado" aria-pressed="true">Todas</button>
+            <button data-filtro-roadmap="Publicada" aria-pressed="false">Publicadas</button>
+            <button data-filtro-roadmap="En desarrollo" aria-pressed="false">En desarrollo</button>
+            <button data-filtro-roadmap="Planeada" aria-pressed="false">Planeadas</button>
+            <button data-filtro-roadmap="Objetivo" aria-pressed="false">Estreno final</button>
+        </div>
+        <p id="aviso-roadmap" class="info-aviso">Cargando ROADMAP.md...</p>
+        <div class="roadmap-esquema" id="diagrama-roadmap">
+            <canvas id="lienzo-roadmap" aria-hidden="true"></canvas>
+            <div class="roadmap-listado" id="etapas-roadmap" aria-live="polite"></div>
+        </div>
+        <div class="info-panel">
+            <h2>Documentación del equipo</h2>
+            <p class="descripcion">Al actualizar el archivo Markdown, este mapa reflejará los cambios en la siguiente publicación.</p>
+            <div class="info-enlaces">
+                <a href="docs/ROADMAP.md">Leer ROADMAP.md</a>
+                <a href="https://github.com/RobDev512/CinePass/blob/main/docs/Guia_Equipo_CinePass.pdf">Guía del equipo (PDF)</a>
+                <a href="https://github.com/RobDev512/CinePass">Repositorio GitHub</a>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="pie"><div class="contenedor pie-contenido"><p><strong>CinePass</strong> · <span data-version-corta>v0.2.0</span> · Proyecto final de Programación Web</p><a href="index.html">Volver al inicio ↑</a></div></footer>
+</body>
+</html>

@@ -335,3 +335,35 @@ a:focus-visible, button:focus-visible { outline: 2px solid #ff9ba4; outline-offs
     .tarjeta { transition: none; }
     .tarjeta:hover { transform: none; }
 }
+
+
+/* Versión visible y navegación del roadmap (CSS adicional). */
+.marca {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.version-chip {
+    padding: 5px 9px;
+    color: #9bf1d6;
+    background: #163238;
+    border: 1px solid #316d5d;
+    border-radius: 18px;
+    font-size: 11px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.enlaces-proyecto {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 22px;
+}
+
+@media (max-width: 600px) {
+    .marca { justify-content: center; }
+    .version-chip { font-size: 10px; }
+}
