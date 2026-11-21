@@ -6,6 +6,7 @@
     <meta name="description" content="Explora las películas de muestra disponibles en CinePass.">
     <title>Cartelera | CinePass</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/version.js" defer></script>
 
     <!-- Icono de CinePass en la pestaña del navegador -->
     <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
@@ -16,16 +17,19 @@
     <!-- Encabezado compartido entre las páginas -->
     <header class="encabezado">
         <div class="contenedor barra">
-            <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
-                <img src="img/logo-cinepass.svg" alt="">
-                Cine<span>Pass</span>
-            </a>
-
+            <div class="marca">
+                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
+                    <img src="img/logo-cinepass.svg" alt="">
+                    Cine<span>Pass</span>
+                </a>
+                <span class="version-chip" data-version>v0.2.0 · Primera proyección</span>
+            </div>
             <nav class="menu" aria-label="Navegación principal">
                 <a href="index.html">Inicio</a>
-                <a class="activo" href="cartelera.html" aria-current="page">Cartelera</a>
+                <a class="activo" aria-current="page" href="cartelera.html">Cartelera</a>
                 <a href="index.html#proximamente">Mis boletos</a>
                 <a href="index.html#proximamente">Administración</a>
+                <a href="roadmap.html">Roadmap</a>
             </nav>
         </div>
     </header>
@@ -93,10 +97,10 @@
 
         <!-- Aviso para evitar enlaces a páginas inexistentes -->
         <section class="contenedor seccion seccion-corta" aria-label="Información sobre las reservaciones">
-            <div class="aviso-simple"><strong>¿Ya elegiste una película?</strong><p>Los detalles, horarios y asientos todavía están en desarrollo por el equipo.</p><a class="enlace-texto" href="index.html#proximamente">Ver módulos en preparación →</a></div>
+            <div class="aviso-simple"><strong>¿Ya elegiste una película?</strong><p>Los detalles, horarios y asientos todavía están en desarrollo por el equipo.</p><div class="enlaces-proyecto"><a class="enlace-texto" href="roadmap.html">Ver roadmap de módulos →</a><a class="enlace-texto" href="demo.html">Ver demo conceptual →</a></div></div>
         </section>
     </main>
 
-    <footer class="pie"><div class="contenedor pie-contenido"><p><strong>CinePass</strong> · Proyecto final de Programación Web</p><a href="index.html">Volver al inicio ↑</a></div></footer>
+    <footer class="pie"><div class="contenedor pie-contenido"><p><strong>CinePass</strong> · <span data-version-corta>v0.2.0</span> · Proyecto final de Programación Web</p><a href="index.html">Volver al inicio ↑</a></div></footer>
 </body>
 </html>
