@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Video conceptual de cómo funcionaría CinePass cuando esté completo.">
+    <title>Demostración conceptual | CinePass</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/paginas-informativas.css">
+    <script src="js/version.js" defer></script>
+</head>
+<body>
+<header class="encabezado">
+    <div class="contenedor barra">
+        <div class="marca">
+            <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio"><img src="img/logo-cinepass.svg" alt="">Cine<span>Pass</span></a>
+            <span class="version-chip" data-version>v0.2.0 · Primera proyección</span>
+        </div>
+        <nav class="menu" aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="cartelera.html">Cartelera</a>
+            <a href="index.html#proximamente">Mis boletos</a>
+            <a href="index.html#proximamente">Administración</a>
+            <a href="roadmap.html">Roadmap</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <section class="info-hero">
+        <div class="contenedor">
+            <p class="etiqueta">VISTA PREVIA · SIMULACIÓN</p>
+            <h1>Así podría funcionar <span>CinePass.</span></h1>
+            <p>Recorrido conceptual por Inicio, Cartelera, Detalle, Asientos, Confirmación, Mis boletos y Administración. Todavía no es una demostración funcional.</p>
+            <div class="info-metadatos"><span data-version>v0.2.0 · Primera proyección</span><span>1 min 20 s</span><span>1920 × 1080</span></div>
+        </div>
+    </section>
+    <section class="contenedor seccion">
+        <figure class="video-marco">
+            <video id="video-conceptual" controls playsinline preload="metadata" aria-label="Video conceptual de CinePass">
+                <source src="https://github.com/RobDev512/CinePass/releases/download/demo-conceptual-v1/Funcionalidad.conceptual.-.CinePass.mp4" type="video/mp4">
+                Tu navegador no admite este video.
+            </video>
+            <figcaption>El video es una simulación del producto esperado. Se utiliza el archivo alojado en GitHub Releases.</figcaption>
+        </figure>
+        <p id="mensaje-video" class="video-error" hidden>El reproductor no pudo cargar el archivo desde GitHub Releases. Abre el enlace de respaldo para consultarlo.</p>
+        <div class="info-acciones">
+            <a class="boton" href="https://github.com/RobDev512/CinePass/releases/tag/demo-conceptual-v1" target="_blank" rel="noopener noreferrer">Abrir en GitHub Releases</a>
+            <a class="boton boton-secundario" href="roadmap.html">Ver roadmap</a>
+        </div>
+        <div class="info-panel" style="margin-top:28px">
+            <h2>¿Qué muestra esta demostración?</h2>
+            <ul class="info-lista">
+                <li>Exploración de Inicio y Cartelera.</li>
+                <li>Selección de función y asientos.</li>
+                <li>Confirmación y boleto digital simulados.</li>
+                <li>Administración y operaciones CRUD ilustrativas.</li>
+            </ul>
+            <p class="descripcion">El proyecto real aún debe integrar la API REST, la base de datos y la validación de reservas.</p>
+        </div>
+    </section>
+</main>
+<footer class="pie"><div class="contenedor pie-contenido"><p><strong>CinePass</strong> · <span data-version-corta>v0.2.0</span> · Proyecto final de Programación Web</p><a href="index.html">Volver al inicio ↑</a></div></footer>
+<script>
+    const avisoVideo = document.getElementById("mensaje-video");
+    const video = document.getElementById("video-conceptual");
+    video.addEventListener("error", function () { avisoVideo.hidden = false; }, true);
+    video.querySelector("source").addEventListener("error", function () { avisoVideo.hidden = false; });
+</script>
+</body>
+</html>
