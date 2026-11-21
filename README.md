@@ -132,6 +132,15 @@ En GitHub, crea un **Pull Request** desde tu rama hacia `main` para revisar e in
 
 > **No ejecutes `git init` dentro de la copia clonada**, porque ya es un repositorio Git. Tampoco subas `node_modules`, credenciales ni contraseñas.
 
+## Material de referencia
+
+Los siguientes materiales ayudan a organizar el trabajo y visualizar el resultado esperado:
+
+- 📄 **[Guía de trabajo en equipo (PDF)](docs/Guia_Equipo_CinePass.pdf):** asignación de módulos, entregables pendientes y rúbrica del proyecto.
+- 🎬 **[Demostración conceptual de CinePass (MP4)](https://github.com/RobDev512/CinePass/releases/tag/demo-conceptual-v1):** video de aproximadamente 80 segundos que ilustra cómo se espera que funcione la aplicación completa.
+
+> **Nota:** el video es una simulación del diseño y flujo esperados. No significa que todas las pantallas, la base de datos o las reservaciones ya estén implementadas.
+
 ## Estado actual
 
 - **Inicio y Cartelera:** versión V2, con navegación, diseño adaptable y filtros de películas.
