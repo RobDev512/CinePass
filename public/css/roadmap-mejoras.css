@@ -1,0 +1,66 @@
+/* =========================================================
+   CINEPASS - CONEXIONES CLARAS DEL ROADMAP
+   Versión: mejora de presentación de v0.2.0.
+   No cambia el número de versión del proyecto.
+
+   La franja libre de la izquierda reserva espacio para
+   Canvas, por lo que ninguna línea se esconde en tarjetas.
+   ========================================================= */
+
+.roadmap-esquema {
+    position: relative;
+    padding: 16px 0 32px;
+}
+
+.roadmap-listado {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 19px;
+    padding-left: 100px;
+}
+
+.etapa-roadmap {
+    width: 100%;
+    padding: 23px 28px;
+    box-shadow: 0 12px 26px #00000055;
+}
+
+.roadmap-esquema canvas {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.roadmap-listado {
+    position: relative;
+    z-index: 1;
+}
+
+.etapa-lista {
+    columns: 2;
+    column-gap: 32px;
+}
+
+.etapa-lista li {
+    break-inside: avoid;
+}
+
+@media (max-width: 800px) {
+    .roadmap-listado {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        padding-left: 100px;
+    }
+
+    .etapa-lista { columns: 1; }
+}
+
+@media (max-width: 600px) {
+    .roadmap-listado { padding-left: 60px; }
+
+    .etapa-roadmap { padding: 18px 17px; }
+
+    .etapa-encabezado h2 { font-size: 18px; }
+}
