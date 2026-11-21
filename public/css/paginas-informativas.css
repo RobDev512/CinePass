@@ -1,0 +1,195 @@
+/* =========================================================
+   CINEPASS - ROADMAP Y DEMOSTRACIÓN CONCEPTUAL
+   Diseño adicional con tarjetas, Grid y Canvas.
+   ========================================================= */
+
+.info-hero {
+    padding: 64px 0 45px;
+    background: linear-gradient(120deg, #142547, #0b1020 62%, #3b1d2b);
+    border-bottom: 1px solid #303b50;
+}
+
+.info-hero h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    margin: 14px 0 16px;
+}
+
+.info-hero h1 span { color: #ff6572; }
+
+.info-hero p:not(.etiqueta) {
+    max-width: 800px;
+    color: #c4cce1;
+}
+
+.info-acciones {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.info-metadatos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.info-metadatos span {
+    padding: 8px 12px;
+    color: #a7f4da;
+    background: #192b38;
+    border: 1px solid #356657;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.info-panel {
+    padding: 27px;
+    border: 1px solid #41516e;
+    border-radius: 16px;
+    background: #152138;
+}
+
+.info-panel h2 { font-size: 24px; }
+
+.info-aviso {
+    padding: 17px;
+    border: 1px solid #42516b;
+    border-radius: 12px;
+    background: #1b2940;
+    color: #c4cce1;
+}
+
+.info-enlaces {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.info-enlaces a { color: #ffa0aa; text-decoration: underline; }
+
+.roadmap-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 22px 0;
+}
+
+.roadmap-filtros button {
+    padding: 10px 16px;
+    color: #d9e3f3;
+    background: #17233a;
+    border: 1px solid #475873;
+    border-radius: 30px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.roadmap-filtros button:hover,
+.roadmap-filtros button.seleccionado {
+    color: #fff;
+    background: #452537;
+    border-color: #ff7985;
+}
+
+.roadmap-esquema { position: relative; padding: 18px 0 32px; }
+
+.roadmap-esquema canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.roadmap-listado {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 54px;
+}
+
+.etapa-roadmap {
+    padding: 24px;
+    border: 1px solid #495a76;
+    border-radius: 17px;
+    background: linear-gradient(145deg, #18253cfa, #10182dfa);
+    box-shadow: 0 16px 28px #0004;
+}
+
+.etapa-roadmap[data-estado="Publicada"] { border-color: #34816b; }
+.etapa-roadmap[data-estado="En desarrollo"] { border-color: #ba8b53; }
+
+.etapa-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.etapa-encabezado h2 { flex: 1; font-size: 21px; margin: 0; }
+
+.etapa-estado {
+    padding: 5px 10px;
+    border: 1px solid #667591;
+    border-radius: 20px;
+    background: #26334a;
+    font-size: 11px;
+}
+
+[data-estado="Publicada"] .etapa-estado { color: #83f3ce; border-color: #34816b; }
+[data-estado="En desarrollo"] .etapa-estado { color: #ffd398; border-color: #ba8b53; }
+
+.etapa-objetivo { color: #e2e9f4; margin: 16px 0 11px; }
+.etapa-responsables { color: #a9b9d0; font-size: 12px; }
+
+.etapa-lista {
+    margin: 16px 0 0;
+    padding-left: 22px;
+    color: #c9d4e3;
+    font-size: 13px;
+}
+
+.etapa-lista li { margin: 7px 0; }
+.etapa-lista li.tarea-hecha { color: #85ecc8; }
+
+.video-marco {
+    overflow: hidden;
+    border: 1px solid #465774;
+    border-radius: 18px;
+    background: #030611;
+    box-shadow: 0 20px 40px #0007;
+}
+
+.video-marco video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #050815;
+}
+
+.video-marco figcaption {
+    padding: 18px;
+    color: #c0cee0;
+    background: #172137;
+    font-size: 13px;
+}
+
+.video-error { color: #ffbec5; margin: 16px 0; }
+.info-lista { padding-left: 22px; color: #c4cce1; }
+.info-lista li { margin: 7px 0; }
+
+@media (max-width: 800px) {
+    .roadmap-listado { grid-template-columns: 1fr; gap: 18px; }
+    .roadmap-esquema canvas { display: none; }
+    .info-hero { padding: 42px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .roadmap-filtros button { transition: none; }
+}
