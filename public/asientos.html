@@ -1,0 +1,118 @@
+<!-- =========================================================
+     PANTALLA: SELECCIÓN DE ASIENTOS — paso 2 de 3 (intermedia,
+     creada con datos de prueba; lenguaje visual de las capturas).
+     Archivo: public/asientos.html
+     ----------------------------------------------------------
+     QUÉ ENTRA:  ?pelicula=sombras&funcion=... desde
+                 detalle.html (sin parámetros usa los sembrados:
+                 Sáb 21 Nov 2026 · 7:30 p. m. · Sala 3).
+                 El mapa de asientos y la "ocupación" vienen de
+                 js/reserva-datos.js (no hay servidor aún).
+     QUÉ SALE:   confirmacion.html?pelicula=...&funcion=...&
+                 asientos=D5,D6 (lista separada por comas;
+                 D5 y D6 vienen preseleccionados de prueba para
+                 que el resumen coincida con la captura).
+     CÓMO ENTRAR:
+                 Cartelera → detalle.html (paso 1) → AQUÍ →
+                 confirmacion.html (paso 3) → mis-boletos.html.
+     ARCHIVOS MODULARES QUE USA:
+                 css/estilos.css · css/reserva-flujo.css ·
+                 css/asientos.css (esta página) ·
+                 js/reserva-datos.js (primero) · js/asientos.js
+     ========================================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CinePass: elige tus asientos en la sala con datos de prueba.">
+    <title>Selección de asientos | CinePass</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/reserva-flujo.css">
+    <link rel="stylesheet" href="css/asientos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+
+    <script src="js/reserva-datos.js" defer></script>
+    <script src="js/asientos.js" defer></script>
+</head>
+<body class="flujo">
+    <header class="encabezado">
+        <div class="contenedor barra">
+            <div class="marca">
+                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
+                    <img src="img/logo-cinepass.svg" alt="">
+                    Cine<span>Pass</span>
+                </a>
+            </div>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a class="activo" aria-current="page" href="cartelera.html">Cartelera</a>
+                <a href="mis-boletos.html">Mis boletos</a>
+                <a href="index.html#proximamente">Administrador</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor-flujo">
+            <h1 id="titulo-pantalla">Selección de asientos</h1>
+            <p class="subtitulo" id="contexto-funcion">Sala 3 · Sáb 21 Nov 2026 · 7:30 p. m. — Sombras de la Noche</p>
+
+            <!-- Stepper compartido: paso 1 completo, paso 2 activo -->
+            <nav class="pasos" aria-label="Progreso de la reservación" id="pasos-flujo">
+                <span class="paso paso-completo"><span class="paso-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="paso-label">Película</span></span>
+                <span class="linea-paso"></span>
+                <span class="paso paso-activo" aria-current="step"><span class="paso-circulo">2</span><span class="paso-label">Asientos</span></span>
+                <span class="linea-paso"></span>
+                <span class="paso paso-pendiente"><span class="paso-circulo">3</span><span class="paso-label">Confirmación</span></span>
+            </nav>
+
+            <div class="columnas-flujo columnas-asientos">
+                <!-- Mapa de asientos (se construye con js/asientos.js) -->
+                <section class="sala" aria-label="Mapa de asientos">
+                    <div class="pantalla">PANTALLA</div>
+                    <div class="mapa" id="mapa-asientos" role="group" aria-label="Asientos de la Sala 3 (datos de prueba)">
+                        <p class="cargando">Cargando mapa de prueba…</p>
+                    </div>
+                    <ul class="leyenda" aria-label="Leyenda del mapa">
+                        <li><span class="marca marca-disponible" aria-hidden="true"></span>Disponible</li>
+                        <li><span class="marca marca-seleccionado" aria-hidden="true"></span>Seleccionado</li>
+                        <li><span class="marca marca-ocupado" aria-hidden="true"></span>Ocupado</li>
+                    </ul>
+                </section>
+
+                <!-- Resumen de la selección -->
+                <aside class="panel-flujo panel-seleccion" aria-labelledby="titulo-seleccion">
+                    <h2 id="titulo-seleccion">Tu selección</h2>
+                    <p class="sel-asientos">Asientos: <strong id="sel-lista">D5 y D6</strong></p>
+                    <hr class="separador-flujo">
+                    <div class="fila-dato"><span class="etiqueta-dato">Cantidad</span><span class="valor" id="sel-cantidad">2 boletos × $90</span></div>
+                    <div class="fila-total"><span class="total-label">Total</span><span class="total-valor" id="sel-total">$180 MXN</span></div>
+                    <p class="nota-precio"><span class="mint">Máximo 10 asientos por reservación (dato de prueba).</span></p>
+
+                    <div class="acciones-seleccion">
+                        <a class="boton-flujo boton-contorno" href="detalle.html?pelicula=sombras" id="enlace-volver">← Volver a la película</a>
+                        <a class="boton-flujo" href="confirmacion.html?pelicula=sombras&amp;funcion=f-sab21-1930-s3&amp;asientos=D5%2CD6" id="enlace-continuar">Continuar: confirmar →</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+            <nav class="pie-enlaces" aria-label="Enlaces del proyecto">
+                <a href="roadmap.html">Roadmap</a>
+                <a href="demo.html">Video conceptual</a>
+                <a href="index.html">Volver al inicio ↑</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

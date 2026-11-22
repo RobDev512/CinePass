@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =========================================================
+     RECURSO: CARTEL "SOMBRAS DE LA NOCHE" (datos de prueba)
+     Qué es:    versión vectorial aproximada del cartel fotográfico
+                de la referencia (faro, luna, nubes y mar).
+    Qué entra:  ninguna (SVG estático).
+    Qué sale:   imagen para detalle.html, confirmacion.html y
+                mis-boletos.html.
+    Cómo se usa: <img src="img/poster-sombras.svg"> (medida base
+                300x450; conserva proporción 2:3 al escalar).
+     ========================================================= -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" role="img" aria-label="Cartel de Sombras de la Noche: un faro iluminado bajo una luna llena entre nubes sobre el mar.">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#253246"/>
+      <stop offset="0.45" stop-color="#17263c"/>
+      <stop offset="1" stop-color="#0a1322"/>
+    </linearGradient>
+    <radialGradient id="luzLuna" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#e8f1f8" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#b9cddd" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#b9cddd" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="luzFaro" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd98a" stop-opacity="0.9"/>
+      <stop offset="0.4" stop-color="#f7b95c" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#f7b95c" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="suave" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="suave2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+  </defs>
+
+  <!-- Cielo nocturno -->
+  <rect width="300" height="450" fill="url(#fondo)"/>
+  <rect y="300" width="300" height="150" fill="#0b1626" opacity="0.85"/>
+
+  <!-- Luna con halo -->
+  <circle cx="216" cy="72" r="58" fill="url(#luzLuna)"/>
+  <circle cx="216" cy="72" r="34" fill="#dce8f2"/>
+  <circle cx="205" cy="62" r="7" fill="#c3d4e2" opacity="0.7"/>
+  <circle cx="226" cy="84" r="5" fill="#c3d4e2" opacity="0.6"/>
+  <circle cx="218" cy="60" r="3.5" fill="#c3d4e2" opacity="0.5"/>
+
+  <!-- Nubes difuminadas -->
+  <g filter="url(#suave)">
+    <ellipse cx="95" cy="95" rx="95" ry="22" fill="#1c2c40" opacity="0.9"/>
+    <ellipse cx="205" cy="120" rx="120" ry="26" fill="#131f31" opacity="0.9"/>
+    <ellipse cx="150" cy="55" rx="140" ry="20" fill="#2a3c54" opacity="0.7"/>
+    <ellipse cx="60" cy="160" rx="90" ry="22" fill="#101a2a" opacity="0.95"/>
+    <ellipse cx="250" cy="170" rx="70" ry="18" fill="#101a2a" opacity="0.85"/>
+  </g>
+
+  <!-- Resplandor del faro -->
+  <circle cx="151" cy="140" r="46" fill="url(#luzFaro)"/>
+
+  <!-- Rocas y peñasco -->
+  <g filter="url(#suave2)">
+    <path d="M85 210 L100 188 L120 196 L140 182 L165 192 L190 184 L215 200 L245 192 L275 208 L300 200 L300 320 L0 320 L0 235 L35 222 Z" fill="#070d18"/>
+  </g>
+
+  <!-- Faro -->
+  <g>
+    <!-- Base y cuerpo -->
+    <path d="M140 190 L162 190 L159 152 L143 152 Z" fill="#c9d4de"/>
+    <rect x="141" y="128" width="20" height="26" rx="2" fill="#d8e2ec"/>
+    <rect x="141" y="128" width="20" height="26" rx="2" fill="none" stroke="#8a97a6" stroke-width="0.8"/>
+    <!-- Galería y lámpara -->
+    <rect x="144" y="132" width="14" height="8" rx="1" fill="#ffcf82"/>
+    <rect x="144" y="132" width="14" height="8" rx="1" fill="none" stroke="#3a4656" stroke-width="0.8"/>
+    <path d="M142 130 L160 130 L156 123 L146 123 Z" fill="#333f4f"/>
+    <path d="M151 118 L149 123 L153 123 Z" fill="#333f4f"/>
+    <!-- Barandilla y detalles -->
+    <rect x="139" y="152" width="24" height="3" rx="1.5" fill="#333f4f"/>
+    <line x1="151" y1="156" x2="151" y2="188" stroke="#9aa7b5" stroke-width="1" opacity="0.7"/>
+    <rect x="146" y="160" width="10" height="12" rx="1" fill="none" stroke="#7f8c9b" stroke-width="0.8"/>
+    <!-- Escalera hacia el faro -->
+    <path d="M120 200 L128 196 L136 192 L144 188" fill="none" stroke="#5a6a7c" stroke-width="1.2" opacity="0.5"/>
+  </g>
+
+  <!-- Haz de luz tenue -->
+  <g opacity="0.25">
+    <path d="M151 136 L300 96 L300 132 Z" fill="url(#luzFaro)"/>
+    <path d="M151 136 L4 118 L0 152 Z" fill="url(#luzFaro)"/>
+  </g>
+
+  <!-- Mar con reflejos -->
+  <g stroke="#40607a" stroke-width="1.4" opacity="0.55">
+    <line x1="180" y1="336" x2="260" y2="336"/>
+    <line x1="40" y1="352" x2="120" y2="352"/>
+    <line x1="200" y1="362" x2="290" y2="362"/>
+    <line x1="60" y1="374" x2="150" y2="374"/>
+    <line x1="190" y1="388" x2="240" y2="388"/>
+  </g>
+  <path d="M0 316 Q75 308 150 314 T300 310 L300 450 L0 450 Z" fill="#0a1524" opacity="0.6"/>
+
+  <!-- Título estilo serif con tracking -->
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#e6ebf1" text-anchor="middle">
+    <text x="150" y="240" font-size="30" letter-spacing="4">SOMBRAS</text>
+    <text x="150" y="262" font-size="15" letter-spacing="6">—DE LA—</text>
+    <text x="150" y="292" font-size="30" letter-spacing="6">NOCHE</text>
+    <line x1="120" y1="302" x2="180" y2="302" stroke="#a33" stroke-width="1.6" opacity="0.75"/>
+  </g>
+
+  <!-- Lema inferior -->
+  <g font-family="Georgia, serif" fill="#c9d2dc" text-anchor="middle" opacity="0.85">
+    <text x="150" y="418" font-size="8.5" letter-spacing="2.5">ALGUNOS SECRETOS</text>
+    <text x="150" y="431" font-size="8.5" letter-spacing="2.5">NUNCA DEBEN SALIR A LA LUZ</text>
+  </g>
+
+  <!-- Viñeta cinematográfica -->
+  <rect width="300" height="450" fill="none" stroke="#05090f" stroke-width="14" opacity="0.35"/>
+</svg>

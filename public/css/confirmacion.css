@@ -1,0 +1,48 @@
+/* =========================================================
+   PANTALLA: CONFIRMACIÓN — CSS propio (css/confirmacion.css)
+   Complementa a css/reserva-flujo.css (componentes compartidos
+   del flujo) y a css/estilos.css (base del sitio).
+   ----------------------------------------------------------
+   QUÉ ENTRA:  clases del HTML de esta pantalla (panel-resumen,
+               formulario, mensajes de error bajo cada campo).
+   QUÉ SALE:   nada hacia otros archivos (hoja final de esta
+               página; los componentes reutilizables viven en
+               la hoja compartida para detalle/asientos/boletos).
+   CÓMO ENTRAR: detalle.html → asientos.html → AQUÍ
+               (documentado también en confirmacion.html).
+   ========================================================= */
+
+/* Fila de metadatos del panel (clasificación · duración · género). */
+.panel-meta .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+/* Mensajes de error que pinta js/confirmacion.js bajo cada campo. */
+.error-flujo {
+    margin: 10px 0 0;
+    color: #ff8791;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* El aviso de pago simulado baja más espacio que los campos. */
+.aviso-pago {
+    margin-top: 28px;
+}
+
+/* Separador antes de "Pago simulado" (la referencia lo trae). */
+#formulario-confirmacion > .separador-flujo {
+    margin: 8px 0 26px;
+}
+
+/* Accesibilidad: foco visible en los botones de método de pago. */
+.pago-boton:focus-visible {
+    outline: 2px solid #62d9c2;
+    outline-offset: 2px;
+}
+
+/* El pie es la única pieza fuera de la referencia (la captura corta
+   en el viewport); en pantalla se deja discreto y separado. */
+.pie { margin-top: 20px; }

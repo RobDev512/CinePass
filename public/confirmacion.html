@@ -1,0 +1,200 @@
+<!-- =========================================================
+     PANTALLA: CONFIRMACIÓN DE RESERVACIÓN — paso 3 de 3
+     Archivo: public/confirmacion.html (versión estática con
+     datos de prueba; la referencia visual del equipo es esta
+     pantalla exactamente).
+     ----------------------------------------------------------
+     QUÉ ENTRA (lecturas en js/confirmacion.js):
+       · URL: ?pelicula=sombras  &funcion=  &asientos= (lista
+         separada por comas). Sin parámetros usa los datos de
+         prueba sembrados (Sáb 21 Nov 2026 · 7:30 p. m. ·
+         Sala 3 · D5 y D6 · 2 boletos × $90 = $180 MXN).
+       · Formulario: nombre* , correo* , teléfono (opcional,
+         10 dígitos), método de pago* (Tarjeta | PayPal |
+         Efectivo en taquilla) y checkbox de términos*.
+     QUÉ SALE (escrituras en js/confirmacion.js):
+       · Reserva validada → sessionStorage
+         "cinepass_reserva_actual" (folio de prueba nuevo) y
+         redirección a mis-boletos.html (boleto digital).
+       · Sin backend todavía: no se procesa ningún cargo real.
+     CÓMO ENTRAR:
+       Inicio → Cartelera → tarjeta "Sombras del Faro" →
+       detalle.html (paso 1) → asientos.html (paso 2) → AQUÍ.
+       (También funciona directa: /confirmacion.html con los
+       datos de prueba por defecto.)
+     ARCHIVOS MODULARES QUE USA:
+       css/estilos.css (base) · css/reserva-flujo.css (pasos,
+       campos, botones) · css/confirmacion.css (esta página) ·
+       js/reserva-datos.js (primero) · js/confirmacion.js ·
+       img/poster-sombras.svg (cartel de prueba)
+     ========================================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CinePass: confirma tu reservación con los datos del cliente y un pago simulado de demostración.">
+    <title>Confirmar reservación | CinePass</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/reserva-flujo.css">
+    <link rel="stylesheet" href="css/confirmacion.css">
+
+    <!-- Fuente de la referencia (Inter) con fallback Segoe UI/Arial
+         por si no hay internet al demostrar el proyecto. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icono de CinePass en la pestaña del navegador -->
+    <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+
+    <script src="js/reserva-datos.js" defer></script>
+    <script src="js/confirmacion.js" defer></script>
+</head>
+<body class="flujo">
+    <!-- Encabezado compartido: el de la referencia, con Cartelera
+         activo (la reservación nace de una película de la cartelera). -->
+    <header class="encabezado">
+        <div class="contenedor barra">
+            <div class="marca">
+                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
+                    <img src="img/logo-cinepass.svg" alt="">
+                    Cine<span>Pass</span>
+                </a>
+            </div>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a class="activo" href="cartelera.html">Cartelera</a>
+                <a href="mis-boletos.html">Mis boletos</a>
+                <a href="index.html#proximamente">Administrador</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor-flujo columnas-flujo">
+
+            <!-- ---------- Columna izquierda: resumen ---------- -->
+            <section class="columna-izquierda" aria-labelledby="titulo-pantalla">
+                <h1 id="titulo-pantalla">Confirmar reservación</h1>
+
+                <!-- Pasos del flujo (render compartido en reserva-datos.js;
+                     el HTML trae el estado de esta pantalla por defecto) -->
+                <nav class="pasos" aria-label="Progreso de la reservación" id="pasos-flujo">
+                    <span class="paso paso-completo"><span class="paso-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="paso-label">Película</span></span>
+                    <span class="linea-paso"></span>
+                    <span class="paso paso-completo"><span class="paso-circulo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="paso-label">Asientos</span></span>
+                    <span class="linea-paso"></span>
+                    <span class="paso paso-activo" aria-current="step"><span class="paso-circulo">3</span><span class="paso-label">Confirmación</span></span>
+                </nav>
+
+                <!-- Panel resumen: lo que llega de las pantallas previas -->
+                <div class="panel-flujo panel-resumen">
+                    <div class="panel-portada">
+                        <img id="resumen-poster" src="img/poster-sombras.svg" alt="Cartel de la película Sombras de la Noche">
+                        <div class="panel-info">
+                            <h2 class="panel-titulo" id="resumen-titulo">Sombras de la Noche</h2>
+                            <div class="panel-meta">
+                                <span class="insignia-clasificacion" id="resumen-clasificacion">B15</span>
+                                <span class="meta-item"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span id="resumen-duracion">105 min</span></span>
+                                <span class="separa" aria-hidden="true">|</span>
+                                <span id="resumen-genero">Misterio / Suspenso</span>
+                            </div>
+                            <p class="panel-sinopsis" id="resumen-sinopsis">Un pueblo costero, un faro y un oscuro secreto del pasado que sale a la luz.</p>
+
+                            <hr class="separador-flujo">
+                            <div class="fila-dato"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span class="etiqueta-dato">Fecha</span><span class="valor" id="resumen-fecha">Sáb 21 Nov 2026</span></div>
+                            <div class="fila-dato"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span class="etiqueta-dato">Hora</span><span class="valor" id="resumen-hora">7:30 p. m.</span></div>
+                            <div class="fila-dato"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span><span class="etiqueta-dato">Sala</span><span class="valor" id="resumen-sala">Sala 3</span></div>
+                            <div class="fila-dato"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="etiqueta-dato">Asientos</span><span class="valor" id="resumen-asientos">D5 y D6</span></div>
+                            <div class="fila-dato"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/><line x1="10" y1="5" x2="10" y2="19" stroke-dasharray="2 2"/></svg></span><span class="etiqueta-dato">Cantidad</span><span class="valor" id="resumen-cantidad">2 boletos × $90</span></div>
+                            <hr class="separador-flujo">
+                            <div class="fila-total"><span class="total-label">Total</span><span class="total-valor" id="resumen-total">$180 MXN</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ---------- Columna derecha: cliente y pago ---------- -->
+            <section class="columna-derecha columna-dividida" aria-labelledby="titulo-cliente">
+                <h2 id="titulo-cliente">Datos del cliente</h2>
+                <form id="formulario-confirmacion" novalidate>
+                    <div class="campo-flujo">
+                        <label for="nombre">Nombre completo <span class="requerido" aria-hidden="true">*</span></label>
+                        <div class="campo-input">
+                            <span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name">
+                        </div>
+                        <p class="error-flujo" data-error-para="nombre" hidden></p>
+                    </div>
+
+                    <div class="campo-flujo">
+                        <label for="correo">Correo electrónico <span class="requerido" aria-hidden="true">*</span></label>
+                        <div class="campo-input">
+                            <span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                            <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" autocomplete="email">
+                        </div>
+                        <p class="error-flujo" data-error-para="correo" hidden></p>
+                    </div>
+
+                    <div class="campo-flujo">
+                        <label for="telefono">Teléfono <span class="opcional">(opcional)</span></label>
+                        <div class="campo-input">
+                            <span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                            <input type="tel" id="telefono" name="telefono" placeholder="10 dígitos" inputmode="numeric" maxlength="10" autocomplete="tel">
+                        </div>
+                        <p class="error-flujo" data-error-para="telefono" hidden></p>
+                    </div>
+
+                    <hr class="separador-flujo">
+
+                    <h2 id="titulo-pago">Pago simulado</h2>
+                    <p class="pagos-label" id="label-metodo">Método de pago <span class="requerido" aria-hidden="true">*</span></p>
+                    <div class="pagos" role="radiogroup" aria-labelledby="label-metodo" id="metodos-pago">
+                        <button type="button" class="pago-boton" role="radio" aria-checked="false" data-metodo="Tarjeta">
+                            <span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+                            Tarjeta
+                        </button>
+                        <button type="button" class="pago-boton" role="radio" aria-checked="false" data-metodo="PayPal">
+                            <span class="paypal-g" aria-hidden="true">P</span>
+                            PayPal
+                        </button>
+                        <button type="button" class="pago-boton" role="radio" aria-checked="false" data-metodo="Efectivo en taquilla">
+                            <span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/></svg></span>
+                            Efectivo en taquilla
+                        </button>
+                    </div>
+                    <p class="error-flujo" data-error-para="metodo" hidden></p>
+
+                    <label class="check-flujo" for="terminos">
+                        <input type="checkbox" id="terminos" name="terminos">
+                        <span>Acepto <a class="link-flujo" href="index.html#proximamente">términos y condiciones</a></span>
+                    </label>
+                    <p class="error-flujo" data-error-para="terminos" hidden></p>
+
+                    <button type="submit" class="boton-flujo" id="boton-confirmar">Confirmar reservación</button>
+
+                    <div class="aviso-flujo aviso-pago">
+                        <span class="icono-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11.5 11 13.5 15 8.5"/></svg></span>
+                        <div>
+                            <strong>Pago simulado</strong>
+                            <p>Demostración: no se solicitan datos bancarios ni se procesa ningún cargo real.</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+            <nav class="pie-enlaces" aria-label="Enlaces del proyecto">
+                <a href="roadmap.html">Roadmap</a>
+                <a href="demo.html">Video conceptual</a>
+                <a href="index.html">Volver al inicio ↑</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

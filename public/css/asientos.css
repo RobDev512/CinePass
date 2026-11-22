@@ -1,0 +1,76 @@
+/* =========================================================
+   PANTALLA: SELECCIÓN DE ASIENTOS — CSS propio (css/asientos.css)
+   Complementa a css/reserva-flujo.css y css/estilos.css.
+   ----------------------------------------------------------
+   QUÉ ENTRA:  clases propias del mapa de asientos (butacas por
+               estado, leyenda, pantalla) y del panel de selección.
+   QUÉ SALE:   nada hacia otros archivos (hoja final del paso 2).
+   CÓMO ENTRAR: detalle.html (paso 1) → AQUÍ → confirmacion.html.
+   ========================================================= */
+
+/* Barra de pantalla cinematográfica. */
+.pantalla {
+    margin: 8px auto 30px;
+    width: 78%;
+    padding: 10px 0;
+    background: linear-gradient(180deg, #3c4d6e, #1c2a44);
+    border-radius: 4px 4px 18px 18px;
+    box-shadow: 0 8px 24px rgba(96, 130, 190, 0.25);
+    text-align: center;
+    font-size: 13px; font-weight: 800; letter-spacing: 6px; color: #dbe4f2;
+}
+
+/* Rejilla del mapa: fila = etiqueta + butacas (corte de pasillo). */
+.mapa { display: grid; gap: 10px; }
+.fila-asientos { display: flex; align-items: center; gap: 8px; justify-content: center; }
+.fila-numero { width: 26px; text-align: center; color: #9aa6ba; font-size: 13px; font-weight: 700; }
+.corte-pasillo { width: 22px; }
+
+.butaca {
+    width: 40px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; color: #b9c4d8;
+    border: 1.5px solid #3d4f6e; border-radius: 9px 9px 5px 5px;
+    font-family: inherit; font-size: 11px; font-weight: 700; cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.butaca:hover:not(.ocupada):not(.seleccionada) { border-color: #6d82a6; }
+.butaca.seleccionada { background: #62d9c2; border-color: #62d9c2; color: #06251f; }
+.butaca.ocupada { background: #131c2e; border-color: #263449; color: #4d5a71; cursor: not-allowed; }
+.butaca:focus-visible { outline: 2px solid #62d9c2; outline-offset: 2px; }
+
+/* Leyenda Disponible / Seleccionado / Ocupado. */
+.leyenda {
+    list-style: none; margin: 26px 0 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: 12px 28px;
+    color: #c6d0e0; font-size: 14px;
+}
+.leyenda li { display: flex; align-items: center; gap: 10px; }
+.marca { width: 18px; height: 15px; border-radius: 5px 5px 3px 3px; display: inline-block; }
+.marca-disponible { border: 1.5px solid #3d4f6e; background: transparent; }
+.marca-seleccionado { background: #62d9c2; }
+.marca-ocupado { background: #131c2e; border: 1.5px solid #263449; }
+
+/* Panel lateral de la selección (usa componentes compartidos). */
+.panel-seleccion h2 { font-size: 26px; }
+.sel-asientos { color: #c6d0e0; font-size: 16px; margin: 0 0 6px; }
+.sel-asientos strong { color: #ffffff; font-weight: 700; }
+.nota-precio { margin: 14px 0 0; font-size: 14px; }
+.mint { color: #62d9c2; font-weight: 700; }
+
+/* Botones apilados dentro del panel. */
+.acciones-seleccion { display: grid; gap: 14px; margin-top: 24px; }
+
+/* Placeholder del mapa hasta que js/asientos.js lo construye. */
+.cargando { color: #aab5c8; font-size: 14px; }
+
+.columnas-asientos { grid-template-columns: 1.35fr 1fr; align-items: stretch; }
+.columnas-asientos .columna-dividida { border-left: 0; padding-left: 0; }
+
+@media (max-width: 1100px) {
+    .columnas-asientos { grid-template-columns: 1fr; gap: 34px; }
+}
+@media (max-width: 700px) {
+    .butaca { width: 30px; height: 26px; font-size: 10px; }
+    .corte-pasillo { width: 12px; }
+}

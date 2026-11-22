@@ -1,0 +1,132 @@
+/* =========================================================
+   PANTALLA: MIS BOLETOS — CSS propio (css/mis-boletos.css)
+   Complementa a css/reserva-flujo.css y css/estilos.css.
+   ----------------------------------------------------------
+   QUÉ ENTRA:  clases propias de la pantalla: pestañas, tarjetas
+               de la lista, boleto grande (perforación, muescas,
+               QR) y caja de aviso.
+   QUÉ SALE:   nada hacia otros archivos (hoja final de la
+               pantalla de resultado del flujo).
+   CÓMO ENTRAR: confirmacion.html (tras confirmar) → AQUÍ;
+               también desde el menú "Mis boletos".
+   ========================================================= */
+
+/* Proporción de columnas de la captura (lista ≈ 45%, boleto ≈ 55%). */
+.columnas-boletos { grid-template-columns: 1fr 1.22fr; }
+
+/* ---------- Pestañas de filtro ---------- */
+.pestanas { display: flex; flex-wrap: wrap; gap: 14px; margin: 0 0 30px; }
+.pestana {
+    min-height: 50px; padding: 0 26px;
+    background: transparent; color: #eef1f6;
+    border: 1px solid #43536f; border-radius: 12px;
+    font-family: inherit; font-size: 17px; font-weight: 600; cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.pestana:hover { border-color: #5b7295; }
+.pestana-activa { background: #ef4b43; border-color: #ef4b43; color: #fff; font-weight: 800; }
+.pestana:focus-visible { outline: 2px solid #62d9c2; outline-offset: 2px; }
+
+/* ---------- Tarjetas de la lista ---------- */
+.lista-boletos { display: grid; gap: 20px; }
+.boleto-tarjeta {
+    position: relative;
+    display: grid; grid-template-columns: 110px 1fr; gap: 24px;
+    padding: 22px;
+    background: #0c1526;
+    border: 1px solid #2a3a56;
+    border-radius: 14px;
+    cursor: pointer;
+}
+.boleto-tarjeta.seleccionada { border: 2px solid #62d9c2; padding: 21px; }
+.boleto-tarjeta img { width: 100%; border-radius: 8px; display: block; }
+.tarjeta-info { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 10px 20px; }
+.tarjeta-titulo { font-size: 24px; font-weight: 800; margin: 0; }
+.nuevo-label {
+    color: #d9a24a; font-size: 13px; font-weight: 800; letter-spacing: 2px;
+    grid-column: 2; justify-self: end; align-self: start; padding-top: 6px;
+}
+.tarjeta-filas { display: grid; gap: 12px; margin-top: 14px; font-size: 18px; font-weight: 700; color: #eef1f6; }
+.tarjeta-filas .fila { display: flex; align-items: center; gap: 12px; }
+.tarjeta-filas .icono { color: #cfd7e4; }
+.tarjeta-chip { grid-row: 2 / span 3; grid-column: 2; align-self: center; justify-self: end; }
+
+/* Chips de estado: "Seleccionado" (menta, oscuro) y píldora con punto. */
+.chip {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 12px 22px; border-radius: 30px;
+    font-size: 16px; font-weight: 700; font-family: inherit;
+}
+.chip-menta { background: #52d3b4; color: #06251f; border: 1px solid #52d3b4; }
+.chip-menta .icono { width: 16px; height: 16px; }
+.chip-outline { background: transparent; border: 1px solid #43536f; color: #eef1f6; }
+.punto { width: 10px; height: 10px; border-radius: 50%; background: #52d3b4; display: inline-block; }
+
+/* ---------- Boleto grande (panel derecho) ---------- */
+.boleto-grande {
+    position: relative;
+    display: grid; grid-template-columns: 250px 1.35fr 200px;
+    gap: 0 26px; align-items: stretch;
+    padding: 24px;
+    background: #0c1730;
+    border: 1px solid #2a3a56;
+    border-radius: 14px;
+}
+.boleto-portada { position: relative; display: flex; flex-direction: column; gap: 10px; }
+.boleto-marca { display: flex; align-items: center; gap: 8px; font-size: 21px; font-weight: 800; }
+.boleto-marca img { width: 30px; height: 30px; }
+.boleto-marca span { color: #ef5350; } /* "Pass" en coral, como la referencia */
+.boleto-cartel { width: 100%; flex: 1; border-radius: 8px; }
+
+/* Perforación central del boleto + muescas decorativas (boceto del
+   equipo) en color fondo para simular el recorte. */
+.boleto-cuerpo { border-left: 2px dashed #3f5170; padding-left: 26px; display: grid; align-content: start; }
+.muesca { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: #0d1326; }
+.muesca-perforacion-arriba { top: -11px; left: 276px; }
+.muesca-perforacion-abajo { bottom: -11px; left: 276px; }
+.muesca-derecha-arriba { top: 118px; right: -11px; }
+.muesca-derecha-abajo { top: 190px; right: -11px; }
+
+.boleto-fila { display: flex; align-items: center; gap: 14px; padding: 11px 0; font-size: 18px; }
+.boleto-fila .icono { color: #62d9c2; }
+.boleto-etiqueta { font-weight: 800; }
+.boleto-valor { font-weight: 800; }
+.linea-fila { border: 0; border-top: 1px solid #243350; margin: 0; }
+
+/* QR decorativo (panel blanco + patrón generado por js/mis-boletos.js) */
+.boleto-qr { display: grid; align-content: start; gap: 12px; text-align: center; }
+.qr-caja {
+    background: #eef1f4; border-radius: 10px; padding: 12px;
+    box-shadow: inset 0 0 0 1px #cfd6de;
+}
+.qr-caja svg { width: 100%; height: auto; display: block; }
+.qr-cap { margin: 0; font-size: 14px; color: #b9c3d4; }
+.qr-cap span { display: block; }
+
+/* Botones del boleto y aviso inferior. */
+.columna-derecha > .acciones-flujo { margin-top: 26px; }
+.columna-derecha > .acciones-flujo .boton-flujo { flex: 1 1 46%; }
+.caja-aviso { display: flex; align-items: flex-start; gap: 18px; margin-top: 26px; }
+.caja-aviso strong { display: block; font-size: 19px; margin-bottom: 2px; }
+.caja-aviso p { margin: 0; color: #c6d0e0; font-size: 16px; }
+
+/* Título del lector de pantallas (visualmente vive dentro del boleto). */
+.fuera-de-pantalla { position: absolute; left: -9999px; }
+
+.vacio { padding: 24px; color: var(--secundario); background: var(--tarjeta); border-radius: 12px; font-size: 15px; }
+
+/* Placeholder de la lista hasta que js/mis-boletos.js la construye. */
+.cargando { color: #aab5c8; font-size: 14px; }
+
+@media (max-width: 1100px) {
+    .columnas-boletos { grid-template-columns: 1fr; gap: 40px; }
+    .boleto-grande { grid-template-columns: 210px 1fr 180px; }
+}
+@media (max-width: 700px) {
+    .boleto-grande { grid-template-columns: 1fr; }
+    .boleto-cuerpo { border-left: 0; border-top: 2px dashed #3f5170; padding-left: 0; padding-top: 18px; }
+    .muesca { display: none; }
+    .tarjeta-info { grid-template-columns: 1fr; }
+    .tarjeta-chip { grid-row: auto; grid-column: 1; justify-self: start; }
+    .columna-derecha > .acciones-flujo .boton-flujo { flex: 1 1 100%; }
+}

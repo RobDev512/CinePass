@@ -1,0 +1,122 @@
+<!-- =========================================================
+     PANTALLA: DETALLE DE PELÍCULA — paso 1 de 3 (intermedia,
+     creada con datos de prueba para poder llegar a la pantalla
+     de confirmación; lenguaje visual idéntico a las capturas).
+     Archivo: public/detalle.html
+     ----------------------------------------------------------
+     QUÉ ENTRA:  ?pelicula=sombras (por ahora solo "Sombras de
+                   la Noche" tiene ficha completa de prueba; el
+                   resto de la cartelera sigue en desarrollo).
+                   Sin parámetros arranca con la película de las
+                   capturas.
+     QUÉ SALE:   enlace a asientos.html con ?pelicula= y
+                 ?funcion= (la función elegida; por defecto la
+                 de la referencia: Sáb 21 Nov 2026 · 7:30 p. m.
+                 · Sala 3).
+     CÓMO ENTRAR:
+                 Inicio → Cartelera → tarjeta "Sombras del Faro"
+                 → AQUÍ → asientos.html → confirmacion.html →
+                 mis-boletos.html.
+     ARCHIVOS MODULARES QUE USA:
+                 css/estilos.css (base) · css/reserva-flujo.css
+                 (pasos/campos/botones) · css/detalle.css (esta
+                 página) · js/reserva-datos.js (primero) ·
+                 js/detalle.js · img/poster-sombras.svg
+     ========================================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CinePass: detalle de la película y elección de función con datos de prueba.">
+    <title>Detalle de película | CinePass</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/reserva-flujo.css">
+    <link rel="stylesheet" href="css/detalle.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+
+    <script src="js/reserva-datos.js" defer></script>
+    <script src="js/detalle.js" defer></script>
+</head>
+<body class="flujo">
+    <header class="encabezado">
+        <div class="contenedor barra">
+            <div class="marca">
+                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
+                    <img src="img/logo-cinepass.svg" alt="">
+                    Cine<span>Pass</span>
+                </a>
+            </div>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a class="activo" aria-current="page" href="cartelera.html">Cartelera</a>
+                <a href="mis-boletos.html">Mis boletos</a>
+                <a href="index.html#proximamente">Administrador</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor-flujo">
+            <h1 id="titulo-pantalla">Detalle de película</h1>
+            <p class="subtitulo">Elige la función y continúa con la selección de asientos. Datos de prueba del módulo en desarrollo (ROADMAP v0.3.0).</p>
+
+            <!-- Stepper compartido: paso 1 activo -->
+            <nav class="pasos" aria-label="Progreso de la reservación" id="pasos-flujo">
+                <span class="paso paso-activo" aria-current="step"><span class="paso-circulo">1</span><span class="paso-label">Película</span></span>
+                <span class="linea-paso"></span>
+                <span class="paso paso-pendiente"><span class="paso-circulo">2</span><span class="paso-label">Asientos</span></span>
+                <span class="linea-paso"></span>
+                <span class="paso paso-pendiente"><span class="paso-circulo">3</span><span class="paso-label">Confirmación</span></span>
+            </nav>
+
+            <!-- Ficha de la película (datos de prueba) -->
+            <div class="panel-flujo panel-resumen">
+                <div class="panel-portada">
+                    <img id="resumen-poster" src="img/poster-sombras.svg" alt="Cartel de la película Sombras de la Noche">
+                    <div class="panel-info">
+                        <h2 class="panel-titulo" id="resumen-titulo">Sombras de la Noche</h2>
+                        <div class="panel-meta">
+                            <span class="insignia-clasificacion" id="resumen-clasificacion">B15</span>
+                            <span class="meta-item"><span class="icono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><span id="resumen-duracion">105 min</span></span>
+                            <span class="separa" aria-hidden="true">|</span>
+                            <span id="resumen-genero">Misterio / Suspenso</span>
+                        </div>
+                        <p class="panel-sinopsis" id="resumen-sinopsis">Un pueblo costero, un faro y un oscuro secreto del pasado que sale a la luz.</p>
+                        <p class="nota-precio"><span class="mint" id="resumen-precio">Precio por boleto: $90 MXN</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funciones disponibles (radiogroup; la de la captura viene elegida) -->
+            <section aria-labelledby="titulo-funciones">
+                <h2 id="titulo-funciones">Funciones disponibles</h2>
+                <div class="lista-funciones" role="radiogroup" aria-labelledby="titulo-funciones" id="lista-funciones">
+                    <p class="cargando">Cargando funciones de prueba…</p>
+                </div>
+            </section>
+
+            <div class="acciones-flujo acciones-una-columna">
+                <a class="boton-flujo boton-contorno" href="cartelera.html" id="enlace-volver">← Volver a la cartelera</a>
+                <a class="boton-flujo" href="asientos.html?pelicula=sombras&amp;funcion=f-sab21-1930-s3" id="enlace-continuar">Continuar: elegir asientos →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-contenido">
+            <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+            <nav class="pie-enlaces" aria-label="Enlaces del proyecto">
+                <a href="roadmap.html">Roadmap</a>
+                <a href="demo.html">Video conceptual</a>
+                <a href="index.html">Volver al inicio ↑</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

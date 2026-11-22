@@ -1,0 +1,198 @@
+/* =========================================================
+   CINEPASS - CSS MODULAR DEL FLUJO DE RESERVACIÓN (COMPARTIDO)
+   Archivo: css/reserva-flujo.css
+   ----------------------------------------------------------
+   QUÉ ENTRA:  páginas que lo cargan DESPUÉS de css/estilos.css
+               (detalle.html, asientos.html, confirmacion.html,
+               mis-boletos.html) y usan <body class="flujo">,
+               .contenedor-flujo y las clases de componentes de
+               este archivo. Las fuentes de datos viven en
+               js/reserva-datos.js (cargarlo primero que el JS de
+               la página).
+   QUÉ SALE:   componentes visuales comunes: tipografía y fondo
+               del flujo, pasos (stepper), columnas con divisor,
+               panel resumen, campos con icono, filas de datos,
+               botones, métodos de pago, checkbox, avisos y
+               insignias. Cada página añade sólo su CSS propio.
+   CÓMO ENTRAR (a las pantallas que lo usan):
+               Inicio → Cartelera → "Sombras del Faro" →
+               detalle.html (paso 1) → asientos.html (paso 2) →
+               confirmacion.html (paso 3) → mis-boletos.html.
+   COLORES:    tomados de las capturas de diseño del equipo
+               (mint #62d9c2, coral #f4534a, navy #0b1424).
+   Deps:       css/estilos.css (base) y fuente Inter con
+               fallback Segoe UI/Arial (si no hay internet, el
+               fallback mantiene el aspecto en Windows).
+   ========================================================= */
+
+/* ---------- 1. Bases tipográficas del flujo ---------- */
+body.flujo {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    /* Degradado de la referencia: navy profundo con resplandor
+       púrpura en la esquina superior derecha. */
+    background:
+        radial-gradient(1100px 640px at 85% 6%, rgba(97, 44, 99, 0.42), rgba(11, 16, 32, 0) 55%),
+        linear-gradient(180deg, #0c1426 0%, #0a1120 60%, #0b1425 100%);
+    min-height: 100vh;
+}
+
+/* Contenedor más ancho que el del sitio actual (la referencia
+   ocupa casi todo el viewport de un monitor de ~1900 px). */
+.contenedor-flujo { width: min(1600px, 92%); margin: auto; padding: 42px 0 56px; }
+
+/* Variables propias del flujo (no reescriben las de estilos.css). */
+.flujo-caja { --menta: #62d9c2; --coral: #f4534a; --borde: #2a3a56; --campo: #0c1830; --borde-campo: #3d4f6e; }
+
+.flujo h1 { font-size: clamp(32px, 3vw, 44px); margin: 0 0 26px; }
+.flujo h2 { font-size: clamp(24px, 2.1vw, 32px); margin: 0 0 22px; }
+.flujo .subtitulo { color: #cfd6e2; font-size: 20px; margin: -14px 0 26px; }
+
+/* ---------- 2. Pasos (stepper) ---------- */
+/* Estados por paso: .paso-completo (check mint), .paso-activo
+   (número con anillo mint y etiqueta fuerte), .paso-pendiente
+   (número gris). Las líneas entre pasos son mint. */
+.pasos { display: flex; align-items: flex-start; gap: 10px; margin: 0 0 34px; }
+.paso { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 96px; }
+.paso-circulo {
+    width: 54px; height: 54px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #58667c; border-radius: 50%;
+    background: #0a1322; color: #aab5c8;
+    font-size: 19px; font-weight: 700;
+}
+.paso-circulo svg { width: 24px; height: 24px; }
+.paso-label { font-size: 16px; color: #dbe1ec; text-align: center; }
+.linea-paso { flex: 1; height: 2px; background: var(--menta, #62d9c2); margin-top: 26px; min-width: 60px; max-width: 150px; }
+.paso-completo .paso-circulo, .paso-activo .paso-circulo { border-color: #62d9c2; color: #62d9c2; }
+.paso-activo .paso-label { color: #ffffff; font-weight: 700; }
+.paso-pendiente .paso-circulo { border-color: #46536a; color: #9aa6ba; }
+.paso-pendiente .paso-label { color: #9aa6ba; }
+
+/* ---------- 3. Columnas con divisor vertical ---------- */
+/* La referencia muestra dos columnas separadas por una línea fina
+   que baja desde el encabezado; el divisor es el borde izquierdo. */
+.columnas-flujo { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0 60px; align-items: start; }
+.columna-dividida { border-left: 1px solid #263449; padding-left: 60px; min-height: 540px; }
+
+/* ---------- 4. Panel resumen de la reserva ---------- */
+.panel-flujo {
+    padding: 26px;
+    background: #0b1424;
+    border: 1px solid #2a3a56;
+    border-radius: 16px;
+}
+.panel-portada { display: grid; grid-template-columns: 250px 1fr; gap: 26px; align-items: start; }
+.panel-portada img { width: 100%; border-radius: 10px; display: block; }
+.panel-titulo { font-size: 32px; font-weight: 700; margin: 0 0 16px; }
+.insignia-clasificacion {
+    display: inline-block; padding: 7px 14px;
+    background: #ef4a41; border-radius: 9px;
+    font-size: 15px; font-weight: 700; color: #fff;
+}
+.panel-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; color: #f3f5f9; font-weight: 700; font-size: 16px; }
+.panel-meta .icono { color: #cfd7e4; }
+.panel-meta .separa { color: #5b6a82; font-weight: 400; }
+.panel-sinopsis { color: #a9b5c9; font-size: 16px; margin: 0 0 18px; }
+
+/* Filas Fecha/Hora/Sala/Asientos/Cantidad: icono + etiqueta y valor
+   en negritas a la derecha (alineado al estilo de la captura). */
+.fila-dato { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 16px; }
+.fila-dato .etiqueta-dato { display: flex; align-items: center; gap: 12px; color: #eef1f6; }
+.fila-dato .valor { margin-left: auto; font-weight: 700; }
+.separador-flujo { border: 0; border-top: 1px solid #243350; margin: 14px 0 0; }
+
+.fila-total { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; }
+.fila-total .total-label { font-size: 28px; font-weight: 800; }
+.fila-total .total-valor { font-size: 30px; font-weight: 800; color: #62d9c2; }
+
+/* ---------- 5. Iconos en línea ---------- */
+/* SVG embebidos (trazo, currentColor). Ver lista por página en el
+   encabezado del .html correspondiente. */
+.icono { width: 22px; height: 22px; flex-shrink: 0; }
+.icono-md { width: 26px; height: 26px; }
+.icono-lg { width: 38px; height: 38px; }
+.icono-menta { color: #62d9c2; }
+/* Los SVG dentro de los spans de icono toman la medida del span
+   (sin esta regla un <svg> sin width/height vale 300x150). */
+.icono svg, .icono-md svg, .icono-lg svg { width: 100%; height: 100%; display: block; }
+
+/* ---------- 6. Formulario de cliente ---------- */
+.campo-flujo { padding: 0 0 22px; }
+.campo-flujo + .campo-flujo { border-top: 1px solid #243350; padding-top: 24px; }
+.campo-flujo > label { display: block; margin-bottom: 12px; font-weight: 700; font-size: 16px; }
+.requerido { color: #ef4a41; }
+.opcional { color: #9aa6ba; font-weight: 400; font-style: italic; }
+.campo-input { position: relative; }
+.campo-input .icono { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #9fb0c9; }
+.campo-input input {
+    width: 100%; height: 60px;
+    padding: 0 18px 0 52px;
+    background: #0c1830; color: #f3f5f9;
+    border: 1px solid #3d4f6e; border-radius: 12px;
+    font-family: inherit; font-size: 16px;
+}
+.campo-input input::placeholder { color: #8b97ab; }
+.campo-input input:focus { outline: 2px solid #62d9c2; }
+
+/* Método de pago: botones contorno; el elegido se resalta en menta. */
+.pagos-label { font-weight: 700; font-size: 16px; margin-bottom: 14px; }
+.pagos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 26px; }
+.pago-boton {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    min-height: 56px; padding: 0 10px;
+    background: transparent; color: #f3f5f9;
+    border: 1px solid #3d4f6e; border-radius: 10px;
+    font-family: inherit; font-size: 16px; cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.pago-boton:hover { border-color: #5b7295; }
+.pago-boton.seleccionado { border-color: #62d9c2; background: rgba(98, 217, 194, 0.12); }
+.pago-boton .paypal-g { font-weight: 800; font-style: italic; font-size: 18px; }
+
+/* Checkbox de términos (en la referencia va sin marcar). */
+.check-flujo { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; font-size: 16px; }
+.check-flujo input { width: 22px; height: 22px; margin: 0; accent-color: #62d9c2; cursor: pointer; }
+.link-flujo { color: #62d9c2; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- 7. Botones grandes del flujo ---------- */
+.boton-flujo {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%; min-height: 62px; padding: 14px 22px;
+    background: #f4534a; color: #fff;
+    border: 1px solid #f4534a; border-radius: 12px;
+    font-family: inherit; font-size: 20px; font-weight: 700; cursor: pointer;
+    text-align: center;
+}
+.boton-flujo:hover { background: #d8433c; }
+.boton-flujo[disabled] { background: #2c3852; border-color: #2c3852; color: #8b97ab; cursor: not-allowed; }
+.boton-contorno { background: transparent; border-color: #43536f; color: #eef1f6; }
+.boton-contorno:hover { background: #182338; }
+.acciones-flujo { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; }
+.acciones-flujo .boton-flujo { width: auto; flex: 1 1 320px; }
+
+/* ---------- 8. Avisos con icono ---------- */
+.aviso-flujo { display: flex; align-items: flex-start; gap: 16px; margin-top: 24px; }
+.aviso-flujo .icono-lg { color: #62d9c2; margin-top: 4px; }
+.aviso-flujo strong { display: block; font-size: 17px; margin-bottom: 2px; }
+.aviso-flujo p { margin: 0; color: #c6d0e0; font-size: 15px; }
+
+/* ---------- 9. Adaptabilidad ---------- */
+@media (max-width: 1100px) {
+    .columnas-flujo { grid-template-columns: 1fr; gap: 40px; }
+    .columna-dividida { border-left: 0; padding-left: 0; min-height: 0; }
+    .panel-portada { grid-template-columns: 220px 1fr; }
+}
+@media (max-width: 700px) {
+    .panel-portada { grid-template-columns: 1fr; }
+    .pasos { flex-wrap: wrap; justify-content: center; }
+    .linea-paso { display: none; }
+    .pagos { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   BLOQUE 10 — PIE PARA EL FLUJO (agregado tras el pulido visual)
+   El pie compartido ya vive en css/estilos.css; esta regla sólo
+   le da el ancho del contenedor del flujo para que el cierre
+   de página sea idéntico en Inicio, Cartelera y el flujo.
+   ========================================================= */
+.pie-contenido { width: min(1600px, 92%); margin: auto; }

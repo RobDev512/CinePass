@@ -1,0 +1,49 @@
+/* =========================================================
+   PANTALLA: DETALLE DE PELÍCULA — CSS propio (css/detalle.css)
+   Complementa a css/reserva-flujo.css y css/estilos.css.
+   ----------------------------------------------------------
+   QUÉ ENTRA:  clases propias de esta pantalla (lista de
+               funciones tipo radio, nota de precio).
+   QUÉ SALE:   nada hacia otros archivos (hoja final de la
+               página paso 1 del flujo).
+   CÓMO ENTRAR: Cartelera ("Sombras del Faro") → AQUÍ →
+               asientos.html → confirmacion.html → mis-boletos.
+   ========================================================= */
+
+/* Nota de precio bajo la sinopsis (acento menta de la referencia). */
+.nota-precio { margin: 4px 0 0; font-size: 15px; }
+.mint { color: #62d9c2; font-weight: 700; }
+
+/* Tarjetas de función: cada una es una opción del grupo de radio. */
+.lista-funciones { display: grid; gap: 16px; margin: 6px 0 30px; }
+.funcion-tarjeta {
+    display: flex; align-items: center; gap: 16px; width: 100%;
+    padding: 18px 22px; text-align: left;
+    background: #0b1424; color: #eef1f6;
+    border: 1px solid #2a3a56; border-radius: 12px;
+    font-family: inherit; font-size: 16px; cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.funcion-tarjeta:hover { border-color: #5b7295; }
+.funcion-tarjeta .marcador {
+    width: 22px; height: 22px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #58667c; border-radius: 50%; color: transparent;
+}
+.funcion-tarjeta .marcador svg { width: 12px; height: 12px; }
+.funcion-tarjeta.elegida { border-color: #62d9c2; background: rgba(98, 217, 194, 0.10); }
+.funcion-tarjeta.elegida .marcador { border-color: #62d9c2; color: #62d9c2; }
+.funcion-datos { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 26px; }
+.funcion-datos .item { display: flex; align-items: center; gap: 10px; }
+.funcion-datos .item .icono { color: #9fb0c9; }
+.funcion-datos .fuerte { font-weight: 700; }
+.funcion-precio { margin-left: auto; color: #62d9c2; font-weight: 800; }
+.cargando { color: #aab5c8; font-size: 14px; margin: 6px 0 30px; }
+
+/* Botón de acción centrado cuando es el único pie de página. */
+.acciones-una-columna .boton-flujo { flex: 0 1 auto; }
+
+@media (max-width: 600px) {
+    .funcion-precio { margin-left: 0; }
+    .funcion-datos { gap: 10px 18px; }
+}
