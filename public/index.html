@@ -6,30 +6,35 @@
     <meta name="description" content="CinePass: explora la cartelera y descubre tu próxima película.">
     <title>Inicio | CinePass</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/identidad-cinepass.css">
+    <link rel="stylesheet" href="css/catalogo-demo.css">
     <script src="js/version.js" defer></script>
-    
-    <!-- Icono de CinePass en la pestaña del navegador -->
+    <script src="js/catalogo-demo.js" defer></script>
+    <script src="js/catalogo-paginas.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
 </head>
-<body>
+<body class="pagina-base pagina-inicio">
     <!-- Encabezado compartido entre las páginas -->
-    <header class="encabezado">
-        <div class="contenedor barra">
-            <div class="marca">
-                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
-                    <img src="img/logo-cinepass.svg" alt="">
-                    Cine<span>Pass</span>
-                </a>
-                <span class="version-chip" data-version-corta>v0.2.0</span>
-            </div>
-            <nav class="menu" aria-label="Navegación principal">
-                <a class="activo" aria-current="page" href="index.html">Inicio</a>
-                <a href="cartelera.html">Cartelera</a>
-                <a href="index.html#proximamente">Mis boletos</a>
-                <a href="index.html#proximamente">Administración</a>
-            </nav>
-        </div>
-    </header>
+    <header class="cp-site-header">
+    <div class="cp-site-header-inner">
+      <div class="cp-site-brand-group">
+        <a class="cp-site-brand" href="index.html" aria-label="CinePass: ir al inicio">
+          <img src="img/logo-cinepass.svg" alt="" width="40" height="40">
+          <span>Cine<span class="cp-site-brand-pass">Pass</span></span>
+        </a>
+        <span class="cp-site-version" data-version-corta>v0.2.0</span>
+      </div>
+      <nav class="cp-site-nav" aria-label="Navegación principal">
+          <a href="index.html" class="activo" aria-current="page">Inicio</a>
+          <a href="cartelera.html">Cartelera</a>
+          <a href="mis-boletos.html">Mis boletos</a>
+          <a href="index.html#proximamente">Administración</a>
+        <span class="cp-site-avatar" role="img" aria-label="Perfil de usuario próximamente" title="Perfil de usuario: próximamente">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.3-4.4 3.5-7 8-7s7.7 2.6 8 7"/></svg>
+        </span>
+      </nav>
+    </div>
+  </header>
 
     <main>
         <!-- Presentación principal -->
@@ -63,14 +68,14 @@
                 </div>
                 <a class="enlace-texto" href="cartelera.html">Ver todas las películas →</a>
             </div>
-            <div class="cuadricula">
+            <div class="cuadricula" id="peliculas-destacadas">
                 <article class="tarjeta">
                     <div class="poster poster-uno" aria-hidden="true"><span class="poster-simbolo">✦</span><span class="poster-lema">MÁS ALLÁ DE LAS ESTRELLAS</span></div>
                     <div class="tarjeta-contenido">
                         <span class="categoria">Ciencia ficción</span>
                         <h3>Órbita 9</h3>
                         <p>120 min · Clasificación B</p>
-                        <a class="enlace-tarjeta" href="#proximamente">Ver detalles →</a>
+                        <a class="enlace-tarjeta" href="#proximamente">Detalle en desarrollo →</a>
                     </div>
                 </article>
                 <article class="tarjeta">
@@ -79,7 +84,7 @@
                         <span class="categoria">Misterio</span>
                         <h3>Sombras del Faro</h3>
                         <p>105 min · Clasificación B15</p>
-                        <a class="enlace-tarjeta" href="#proximamente">Ver detalles →</a>
+                        <a class="enlace-tarjeta" href="#proximamente">Detalle en desarrollo →</a>
                     </div>
                 </article>
                 <article class="tarjeta">
@@ -88,7 +93,7 @@
                         <span class="categoria">Animación</span>
                         <h3>Aventura Pixel</h3>
                         <p>95 min · Clasificación A</p>
-                        <a class="enlace-tarjeta" href="#proximamente">Ver detalles →</a>
+                        <a class="enlace-tarjeta" href="#proximamente">Detalle en desarrollo →</a>
                     </div>
                 </article>
             </div>
@@ -104,7 +109,7 @@
                     <article class="paso"><span class="paso-numero">02</span><h3>Elige</h3><p>Selecciona una función y tus asientos favoritos.</p></article>
                     <article class="paso"><span class="paso-numero">03</span><h3>Disfruta</h3><p>Confirma tu reserva y consulta tu boleto digital.</p></article>
                 </div>
-                <p class="nota">La selección de funciones, asientos y boletos se incorporará en próximas etapas.</p>
+                <p class="nota">Detalle de película y selección de asientos siguen en desarrollo. Confirmación y Mis boletos ya pueden probarse en modo demostración.</p>
             </div>
         </section>
 
@@ -115,22 +120,22 @@
                 <div>
                     <p class="etiqueta">CINEPASS EN DESARROLLO</p>
                     <h2 id="titulo-proximamente">Pronto habrá más funciones</h2>
-                    <p>Detalle de película, selección de asientos, confirmación, Mis boletos y Administración se integrarán cuando estén listos.</p>
-                    <div class="enlaces-proyecto"><a class="enlace-texto" href="cartelera.html">Visitar la cartelera →</a><a class="enlace-texto" href="roadmap.html">Consultar roadmap →</a><a class="enlace-texto" href="demo.html">Ver video conceptual →</a></div>
+                    <p>Detalle de película y asientos siguen en desarrollo por Lance. Jorge realiza la interfaz de Administración y Robert conectará el CRUD y la API. Ya puedes probar Confirmación y Mis boletos en modo DEMO desde Cartelera.</p>
+                    <div class="enlaces-proyecto"><a class="enlace-texto" href="cartelera.html">Visitar la cartelera →</a><a class="enlace-texto" href="cartelera.html">Probar una reserva desde Cartelera →</a><a class="enlace-texto" href="roadmap.html">Consultar roadmap →</a></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="pie">
-    <div class="contenedor pie-contenido">
-        <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
-        <nav class="pie-enlaces" aria-label="Enlaces del proyecto">
-            <a href="roadmap.html">Roadmap</a>
-            <a href="demo.html">Video conceptual</a>
-            <a href="index.html">Volver al inicio ↑</a>
-        </nav>
+    <footer class="cp-site-footer">
+    <div class="cp-site-footer-inner">
+      <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+      <nav class="cp-site-footer-links" aria-label="Enlaces del proyecto">
+        <a href="roadmap.html">Roadmap</a>
+        <a href="demo.html">Video conceptual</a>
+        <a href="index.html">Volver al inicio ↑</a>
+      </nav>
     </div>
-</footer>
+  </footer>
 </body>
 </html>

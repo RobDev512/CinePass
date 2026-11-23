@@ -6,32 +6,36 @@
     <meta name="description" content="Explora las películas de muestra disponibles en CinePass.">
     <title>Cartelera | CinePass</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/identidad-cinepass.css">
+    <link rel="stylesheet" href="css/catalogo-demo.css">
     <script src="js/version.js" defer></script>
-
-    <!-- Icono de CinePass en la pestaña del navegador -->
+    <script src="js/catalogo-demo.js" defer></script>
+    <script src="js/catalogo-paginas.js" defer></script>
     <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
-
-    <script src="js/cartelera.js" defer></script>
+    
 </head>
-<body>
+<body class="pagina-base pagina-cartelera">
     <!-- Encabezado compartido entre las páginas -->
-    <header class="encabezado">
-        <div class="contenedor barra">
-            <div class="marca">
-                <a class="logo" href="index.html" aria-label="CinePass, ir a Inicio">
-                    <img src="img/logo-cinepass.svg" alt="">
-                    Cine<span>Pass</span>
-                </a>
-                <span class="version-chip" data-version-corta>v0.2.0</span>
-            </div>
-            <nav class="menu" aria-label="Navegación principal">
-                <a href="index.html">Inicio</a>
-                <a class="activo" aria-current="page" href="cartelera.html">Cartelera</a>
-                <a href="index.html#proximamente">Mis boletos</a>
-                <a href="index.html#proximamente">Administración</a>
-            </nav>
-        </div>
-    </header>
+    <header class="cp-site-header">
+    <div class="cp-site-header-inner">
+      <div class="cp-site-brand-group">
+        <a class="cp-site-brand" href="index.html" aria-label="CinePass: ir al inicio">
+          <img src="img/logo-cinepass.svg" alt="" width="40" height="40">
+          <span>Cine<span class="cp-site-brand-pass">Pass</span></span>
+        </a>
+        <span class="cp-site-version" data-version-corta>v0.2.0</span>
+      </div>
+      <nav class="cp-site-nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="cartelera.html" class="activo" aria-current="page">Cartelera</a>
+          <a href="mis-boletos.html">Mis boletos</a>
+          <a href="index.html#proximamente">Administración</a>
+        <span class="cp-site-avatar" role="img" aria-label="Perfil de usuario próximamente" title="Perfil de usuario: próximamente">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.3-4.4 3.5-7 8-7s7.7 2.6 8 7"/></svg>
+        </span>
+      </nav>
+    </div>
+  </header>
 
     <main>
         <!-- Introducción de la cartelera -->
@@ -96,19 +100,19 @@
 
         <!-- Aviso para evitar enlaces a páginas inexistentes -->
         <section class="contenedor seccion seccion-corta" aria-label="Información sobre las reservaciones">
-            <div class="aviso-simple"><strong>¿Ya elegiste una película?</strong><p>Los detalles, horarios y asientos todavía están en desarrollo por el equipo.</p><div class="enlaces-proyecto"><a class="enlace-texto" href="roadmap.html">Ver roadmap de módulos →</a><a class="enlace-texto" href="demo.html">Ver demo conceptual →</a></div></div>
+            <div class="aviso-simple"><strong>¿Ya elegiste una película?</strong><p>El módulo de Detalle y la selección real de asientos siguen en desarrollo por Lance. Por ahora puedes probar una reservación ficticia de Sombras del Faro desde su tarjeta; los demás títulos aún no tienen funciones.</p><div class="enlaces-proyecto"><a class="enlace-texto" href="#lista-peliculas">Elegir película para prueba →</a><a class="enlace-texto" href="mis-boletos.html">Consultar boletos de prueba →</a><a class="enlace-texto" href="roadmap.html">Ver roadmap →</a></div></div>
         </section>
     </main>
 
-    <footer class="pie">
-    <div class="contenedor pie-contenido">
-        <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
-        <nav class="pie-enlaces" aria-label="Enlaces del proyecto">
-            <a href="roadmap.html">Roadmap</a>
-            <a href="demo.html">Video conceptual</a>
-            <a href="index.html">Volver al inicio ↑</a>
-        </nav>
+    <footer class="cp-site-footer">
+    <div class="cp-site-footer-inner">
+      <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+      <nav class="cp-site-footer-links" aria-label="Enlaces del proyecto">
+        <a href="roadmap.html">Roadmap</a>
+        <a href="demo.html">Video conceptual</a>
+        <a href="index.html">Volver al inicio ↑</a>
+      </nav>
     </div>
-</footer>
+  </footer>
 </body>
 </html>

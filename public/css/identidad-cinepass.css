@@ -1,0 +1,121 @@
+/* ===========================================================
+   CINEPASS - IDENTIDAD VISUAL COMPARTIDA
+   Una sola barra superior y pie para todas las pantallas.
+   Mantener sin editar al integrar Detalle, Asientos o Admin.
+   =========================================================== */
+@font-face { font-family: "Montserrat"; font-weight: 700; font-display: swap; src: url("../fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 800; font-display: swap; src: url("../fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-weight: 400; font-display: swap; src: url("../fonts/nunito-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-weight: 600; font-display: swap; src: url("../fonts/nunito-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-weight: 700; font-display: swap; src: url("../fonts/nunito-sans-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Nunito Sans"; font-weight: 800; font-display: swap; src: url("../fonts/nunito-sans-latin-800-normal.woff2") format("woff2"); }
+:root {
+  --cp-header-bg: #0e1524;
+  --cp-site-fondo: #0c1322;
+  --cp-site-panel: #141e31;
+  --cp-site-coral: #ef3f52;
+  --cp-site-menta: #3fe0b0;
+  --cp-site-borde: #2c3850;
+  --cp-site-texto: #f3f5f9;
+  --cp-site-muted: #adb8cb;
+  --cp-site-heading: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --cp-site-body: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+}
+html { background: var(--cp-site-fondo); overscroll-behavior: none; }
+body { overscroll-behavior: none; }
+/* Se aplica solo a la identidad de CinePass, sin alterar los formularios de Iván. */
+.cp-site-header, .cp-site-footer { font-family: var(--cp-site-body); }
+.cp-site-header *, .cp-site-footer * { box-sizing: border-box; }
+.cp-site-header {
+  position: relative; z-index: 3;
+  width: 100%; flex: 0 0 auto;
+  background: var(--cp-header-bg);
+  color: var(--cp-site-texto);
+  border-bottom: 1px solid #29344a;
+}
+.cp-site-header-inner {
+  width: min(1370px, 92%); margin: 0 auto; min-height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 22px;
+}
+.cp-site-brand-group { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.cp-site-brand {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 28px; font-weight: 800; letter-spacing: -.6px;
+  text-decoration: none; white-space: nowrap; color: #fff;
+}
+.cp-site-brand img { width: 40px; height: 40px; flex-shrink: 0; object-fit: contain; }
+.cp-site-brand-pass { color: var(--cp-site-coral); }
+.cp-site-brand:hover { color: #fff; }
+.cp-site-version {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; line-height: 1.15;
+  border-radius: 999px; background: #16342f;
+  border: 1px solid #367660; color: #9bf5d9;
+  font-size: 12px; font-weight: 800; white-space: nowrap;
+}
+.cp-site-nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: clamp(14px, 2.5vw, 35px); }
+.cp-site-nav a { position: relative; padding: 23px 0 21px; color: #e4e9f4; text-decoration: none; font-size: 15px; font-weight: 700; white-space: nowrap; }
+.cp-site-nav a:hover { color: #fff; }
+.cp-site-nav a.activo, .cp-site-nav a[aria-current="page"] { color: #ff6171; }
+.cp-site-nav a.activo::after, .cp-site-nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; bottom: 9px; width: 100%; height: 3px; border-radius: 5px; background: var(--cp-site-coral); }
+.cp-site-avatar { display: inline-flex; justify-content: center; align-items: center; width: 32px; height: 32px; border-radius: 50%; background: #303a4c; color: #dbe1eb; cursor: default; }
+.cp-site-avatar svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.cp-site-footer { width: 100%; margin-top: auto; flex-shrink: 0; padding: 18px 0; background: #101827; color: #b8c6dd; border-top: 1px solid #29344a; font-size: 13px; }
+.cp-site-footer-inner { width: min(1370px, 92%); margin: auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
+.cp-site-footer p { margin: 0; line-height: 1.6; }
+.cp-site-footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.cp-site-footer-links a { color: #ff97a1; text-decoration: none; white-space: nowrap; }
+.cp-site-footer-links a:hover { color: #fff; text-decoration: underline; }
+.cp-site-header a:focus-visible, .cp-site-footer a:focus-visible { outline: 2px solid var(--cp-site-menta); outline-offset: 4px; border-radius: 4px; }
+/* Inicio y Cartelera toman la identidad visual de las otras dos pantallas. */
+body.pagina-base {
+  --principal: #ef3f52;
+  --fondo: var(--cp-site-fondo);
+  --tarjeta: #151f32;
+  --texto: #f3f5f9;
+  --secundario: #adb8cb;
+  display: flex; flex-direction: column; min-height: 100vh;
+  overflow-x: clip;
+  color: var(--cp-site-texto);
+  font-family: var(--cp-site-body);
+  background-color: var(--cp-site-fondo);
+  background-image: radial-gradient(ellipse 55% 60% at 100% 35%, rgba(110, 22, 65, .3), transparent 65%), linear-gradient(155deg, #0d1527, #0b1120 65%, #120f21);
+  background-attachment: fixed;
+}
+body.pagina-base main { flex: 1; }
+body.pagina-base h1, body.pagina-base h2, body.pagina-base h3 { font-family: var(--cp-site-heading); letter-spacing: -.35px; }
+body.pagina-base .contenedor { width: min(1200px, 92%); }
+body.pagina-base .hero { background: radial-gradient(ellipse 50% 70% at 90% 50%, rgba(87, 29, 70, .33), transparent 75%), linear-gradient(117deg, #12243f, #10172b 65%, #231527); }
+body.pagina-base .portada-interna { background: linear-gradient(112deg, #111e35, #15152a 65%, #33162b); }
+body.pagina-base .tarjeta { background-color: #151f32; border-color: #334059; }
+body.pagina-base .filtros, body.pagina-base .paso, body.pagina-base .aviso-proximamente, body.pagina-base .aviso-simple { background-color: #172238; border-color: #334059; }
+body.pagina-base .boton { background-color: var(--cp-site-coral); border-color: var(--cp-site-coral); }
+body.pagina-base .boton:hover { background-color: #d42e43; }
+body.pagina-base .boton-secundario { background: transparent; border-color: #69758f; }
+body.pagina-base .boton-secundario:hover { background: #25314b; }
+body.pagina-base .enlace-texto, body.pagina-base .enlace-tarjeta { color: #ff9ba4; }
+body.pagina-base .enlace-texto:hover, body.pagina-base .enlace-tarjeta:hover { color: #fff; }
+body.pagina-base .filtros input, body.pagina-base .filtros select { background-color: #1a263e; }
+body.pagina-base .etiqueta { color: #ff8997; }
+body.pagina-base .enlaces-proyecto { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; }
+body.pagina-base .seccion-alternativa { background: #111c30b5; }
+/* En la sección de cartelera evitamos mostrar un módulo incompleto como sistema terminado. */
+body.pagina-base .enlaces-proyecto a { font-size: 14px; }
+@media (max-width: 900px) {
+  .cp-site-header-inner { flex-direction: column; justify-content: center; padding: 12px 0 7px; gap: 8px; }
+  .cp-site-nav { justify-content: center; column-gap: 24px; row-gap: 4px; }
+  .cp-site-nav a { padding: 8px 0 12px; }
+  .cp-site-nav a.activo::after, .cp-site-nav a[aria-current="page"]::after { bottom: 3px; }
+  .cp-site-avatar { width: 28px; height: 28px; }
+  .cp-site-avatar svg { width: 19px; height: 19px; }
+  .cp-site-footer-inner { justify-content: center; text-align: center; }
+  .cp-site-footer-links { justify-content: center; }
+}
+@media (max-width: 420px) {
+  .cp-site-brand { font-size: 25px; }
+  .cp-site-brand img { width: 36px; height: 36px; }
+  .cp-site-nav { column-gap: 13px; }
+  .cp-site-nav a { font-size: 12px; }
+  .cp-site-avatar { display: none; }
+}
