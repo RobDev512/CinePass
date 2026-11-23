@@ -1,0 +1,41 @@
+/* Acceso puntual al flujo DEMO sin invadir los módulos que desarrolla Lance. */
+/* Carteles oficiales de ejemplo: proporción original 300 x 400, sin recortar títulos. */
+body.pagina-base .tarjeta .poster-foto {
+  position: relative;
+  display: block;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #111d30;
+}
+body.pagina-base .tarjeta .poster-imagen {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+body.pagina-base .tarjeta .detalle-pendiente {
+  display:block; color:#aabbd0; font-size:12px; margin-bottom:10px;
+}
+body.pagina-base .tarjeta .enlace-demo-reserva {
+  display:inline-flex;align-items:center;justify-content:center;min-height:36px;
+  border-radius:8px;border:1px solid #f06c79;background:#4d2638;color:#fff;
+  padding:8px 13px;font-size:13px;font-weight:800;text-decoration:none;
+  transition:background .15s ease;
+}
+body.pagina-base .tarjeta .enlace-demo-reserva:hover { background:#a82b44;color:white; }
+body.pagina-base .tarjeta .enlace-demo-reserva:focus-visible { outline:2px solid #4ce1ba;outline-offset:3px; }
+/* Conserva 3 columnas aunque el filtro deje un solo resultado. */
+body.pagina-cartelera #lista-peliculas { grid-template-columns: repeat(3,minmax(0,1fr)); }
+@media (max-width: 980px) {
+  body.pagina-cartelera #lista-peliculas { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 640px) {
+  body.pagina-cartelera #lista-peliculas { grid-template-columns: minmax(0,1fr); }
+}

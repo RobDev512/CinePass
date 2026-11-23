@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Confirma tu reservación de CinePass.">
+  <title>CinePass – Confirmar reservación</title>
+  <link rel="icon" type="image/svg+xml" href="img/logo-cinepass.svg">
+  <link rel="stylesheet" href="css/reserva-flujo.css">
+  <link rel="stylesheet" href="css/confirmacion.css">
+  <link rel="stylesheet" href="css/identidad-cinepass.css">
+  <script src="js/version.js" defer></script>
+  <script src="js/vendor/qrcode.js" defer></script>
+  <script src="js/catalogo-demo.js" defer></script>
+  <script src="js/reserva-datos.js" defer></script>
+  <script src="js/confirmacion.js" defer></script>
+</head>
+<body class="flujo flujo-confirmacion">
+
+  <!-- Íconos lineales reutilizables (sin bibliotecas externas). -->
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="cp-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19.5 7"/></symbol>
+    <symbol id="cp-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></symbol>
+    <symbol id="cp-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M15.5 4.8a3.5 3.5 0 0 1 0 6.6M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+    <symbol id="cp-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 6.5 9 7 9-7"/></symbol>
+    <symbol id="cp-phone" viewBox="0 0 24 24"><path d="M21.5 16.6v3a2 2 0 0 1-2.2 2 19.5 19.5 0 0 1-8.5-3 19.2 19.2 0 0 1-6-6 19.5 19.5 0 0 1-3-8.6A2 2 0 0 1 3.8 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+    <symbol id="cp-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M7.5 2.5v4M16.5 2.5v4M3 9.5h18"/></symbol>
+    <symbol id="cp-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/></symbol>
+    <symbol id="cp-screen" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="13" rx="1.5"/><path d="M8 20.5h8M12 17v3.5"/></symbol>
+    <symbol id="cp-seat" viewBox="0 0 24 24"><path d="M6 11V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4"/><path d="M3.5 11.5a1.5 1.5 0 0 1 3 0V14h11v-2.5a1.5 1.5 0 0 1 3 0V17a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1Z"/><path d="M6 18v2.5M18 18v2.5"/></symbol>
+    <symbol id="cp-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a1.9 1.9 0 0 1-2.7 0L3 12.9V3h9.9l7.7 7.7a1.9 1.9 0 0 1 0 2.7Z"/><circle cx="7.5" cy="7.5" r="1.3"/></symbol>
+    <symbol id="cp-ticket" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></symbol>
+    <symbol id="cp-mask" viewBox="0 0 24 24"><path d="M3 4.5c3 1.3 6 1.3 9 0v6.5c0 3.6-2 6-4.5 6.5C5 17 3 14.6 3 11Z"/><path d="M12 7.5c3 1.3 6 1.3 9 0V14c0 3.6-2 6-4.5 6.5-1.5-.3-2.8-1.2-3.6-2.6"/><path d="M5.6 9.3h1.6M8.6 9.3h1.6M14.6 12.3h1.6M17.6 12.3h1.6M6 13.2c1 .8 2.2.8 3.2 0M15 17c1-.8 2.2-.8 3.2 0"/></symbol>
+    <symbol id="cp-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/></symbol>
+    <symbol id="cp-store" viewBox="0 0 24 24"><path d="M3.5 9.5 5 4h14l1.5 5.5"/><path d="M3.5 9.5a2.8 2.8 0 0 0 5.6 0 2.8 2.8 0 0 0 5.8 0 2.8 2.8 0 0 0 5.6 0Z"/><path d="M5 12.5V20h14v-7.5M9.5 20v-4.5h5V20"/></symbol>
+    <symbol id="cp-shield" viewBox="0 0 24 24"><path d="M12 2.5 20 5.8v5.7c0 5-3.3 8.4-8 10-4.7-1.6-8-5-8-10V5.8Z"/><path d="m8.4 12 2.6 2.6 4.8-5"/></symbol>
+    <symbol id="cp-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v3.5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V16"/></symbol>
+    <symbol id="cp-share" viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="18.5" r="3"/><path d="m8.7 10.6 6.6-3.6M8.7 13.4l6.6 3.6"/></symbol>
+    <symbol id="cp-avatar" viewBox="0 0 24 24"><circle cx="12" cy="8.2" r="4.3"/><path d="M3.8 21a8.2 8.2 0 0 1 16.4 0Z"/></symbol>
+  </svg>
+
+  <header class="cp-site-header">
+    <div class="cp-site-header-inner">
+      <div class="cp-site-brand-group">
+        <a class="cp-site-brand" href="index.html" aria-label="CinePass: ir al inicio">
+          <img src="img/logo-cinepass.svg" alt="" width="40" height="40">
+          <span>Cine<span class="cp-site-brand-pass">Pass</span></span>
+        </a>
+        <span class="cp-site-version" data-version-corta>v0.2.0</span>
+      </div>
+      <nav class="cp-site-nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="cartelera.html" class="activo" aria-current="page">Cartelera</a>
+          <a href="mis-boletos.html">Mis boletos</a>
+          <a href="index.html#proximamente">Administración</a>
+        <span class="cp-site-avatar" role="img" aria-label="Perfil de usuario próximamente" title="Perfil de usuario: próximamente">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.3-4.4 3.5-7 8-7s7.7 2.6 8 7"/></svg>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cp-main">
+    <div class="cp-columnas conf-columnas">
+
+      <section class="conf-reserva" aria-labelledby="titulo-pantalla">
+        <h1 id="titulo-pantalla" class="cp-titulo conf-titulo">Confirmar reservación <span class="cp-demo-badge" title="Reservación simulada">DEMO</span></h1>
+
+        <ol class="pasos" aria-label="Progreso de la reservación">
+          <li class="paso paso-completo"><span class="paso-circulo"><svg class="icono-cp" aria-hidden="true"><use href="#cp-check"></use></svg></span><span class="paso-texto">Película</span></li>
+          <li class="paso paso-completo"><span class="paso-circulo"><svg class="icono-cp" aria-hidden="true"><use href="#cp-check"></use></svg></span><span class="paso-texto">Asientos</span></li>
+          <li class="paso paso-activo" aria-current="step"><span class="paso-circulo">3</span><span class="paso-texto">Confirmación</span></li>
+        </ol>
+
+        <article class="resumen" aria-label="Resumen de la reservación">
+          <img id="resumen-poster" class="resumen-poster" src="img/poster-sombras-del-faro.svg" alt="Cartel de Sombras del Faro">
+          <div class="resumen-info">
+            <h2 id="resumen-titulo" class="resumen-titulo">Sombras del Faro</h2>
+            <p class="resumen-meta">
+              <span id="resumen-clasificacion" class="insignia">B15</span>
+              <span class="meta-sep" aria-hidden="true">|</span>
+              <span class="meta-item"><svg class="icono-cp" aria-hidden="true"><use href="#cp-clock"></use></svg><span id="resumen-duracion">105 min</span></span>
+              <span class="meta-sep" aria-hidden="true">|</span>
+              <span class="meta-item"><svg class="icono-cp" aria-hidden="true"><use href="#cp-mask"></use></svg><span id="resumen-genero">Misterio / Suspenso</span></span>
+            </p>
+            <p class="resumen-calificacion"><span class="estrella" aria-hidden="true">★</span><strong id="resumen-calificacion">8.4</strong><small id="resumen-votos">(2,316 calificaciones)</small></p>
+            <p id="resumen-sinopsis" class="resumen-sinopsis"></p>
+
+            <dl class="resumen-datos">
+              <div><dt><svg class="icono-cp" aria-hidden="true"><use href="#cp-calendar"></use></svg>Fecha</dt><dd id="resumen-fecha">—</dd></div>
+              <div><dt><svg class="icono-cp" aria-hidden="true"><use href="#cp-clock"></use></svg>Hora</dt><dd id="resumen-hora">—</dd></div>
+              <div><dt><svg class="icono-cp" aria-hidden="true"><use href="#cp-seat"></use></svg>Sala</dt><dd id="resumen-sala">—</dd></div>
+              <div><dt><svg class="icono-cp" aria-hidden="true"><use href="#cp-ticket"></use></svg>Asientos</dt><dd id="resumen-asientos">—</dd></div>
+              <div><dt><svg class="icono-cp" aria-hidden="true"><use href="#cp-users"></use></svg>Cantidad</dt><dd id="resumen-cantidad">—</dd></div>
+            </dl>
+
+            <div class="resumen-total"><span>Total</span><strong id="resumen-total">—</strong></div>
+          </div>
+        </article>
+      </section>
+
+      <div class="cp-divisor" aria-hidden="true"></div>
+
+      <section class="conf-cliente" aria-labelledby="titulo-cliente">
+        <form id="formulario-confirmacion" novalidate>
+          <h2 id="titulo-cliente" class="cp-titulo subtitulo-form">Datos del cliente</h2>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo <span class="asterisco" aria-hidden="true">*</span></label>
+            <div class="campo-caja">
+              <svg class="icono-cp" aria-hidden="true"><use href="#cp-user"></use></svg>
+              <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="100" placeholder="Ana Sofía Ramírez Torres" required aria-describedby="error-nombre">
+            </div>
+            <p id="error-nombre" class="campo-error" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico <span class="asterisco" aria-hidden="true">*</span></label>
+            <div class="campo-caja">
+              <svg class="icono-cp" aria-hidden="true"><use href="#cp-mail"></use></svg>
+              <input id="correo" name="correo" type="email" autocomplete="email" maxlength="120" placeholder="ana.ramirez@ejemplo.com" required aria-describedby="error-correo">
+            </div>
+            <p id="error-correo" class="campo-error" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono <em>(opcional)</em></label>
+            <div class="campo-caja">
+              <svg class="icono-cp" aria-hidden="true"><use href="#cp-phone"></use></svg>
+              <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="17" placeholder="+52 55 1234 5678" aria-describedby="error-telefono">
+            </div>
+            <p id="error-telefono" class="campo-error" hidden></p>
+          </div>
+
+          <hr class="separador">
+
+          <h2 class="cp-titulo subtitulo-form">Pago simulado</h2>
+          <p class="etiqueta-campo" id="label-metodo">Método de pago <span class="asterisco" aria-hidden="true">*</span></p>
+          <div class="metodos" role="radiogroup" aria-labelledby="label-metodo">
+            <button type="button" class="metodo seleccionado" role="radio" aria-checked="true" data-metodo="Tarjeta">
+              <svg class="icono-cp" aria-hidden="true"><use href="#cp-card"></use></svg>Tarjeta
+            </button>
+            <button type="button" class="metodo" role="radio" aria-checked="false" data-metodo="PayPal">
+              <svg class="icono-paypal" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 21.5H4.2a.5.5 0 0 1-.5-.6L6.6 2.9A1 1 0 0 1 7.6 2h6.6c3.6 0 5.7 1.8 5.1 5.1-.7 4-3.4 5.8-7 5.8H10a.9.9 0 0 0-.9.8Z"/><path d="M19.6 7.4c1.4.9 1.9 2.4 1.6 4.3-.6 3.4-2.9 5-6 5h-1.5a.8.8 0 0 0-.8.7l-.7 4.1H9.4" opacity=".7"/></svg>PayPal
+            </button>
+            <button type="button" class="metodo" role="radio" aria-checked="false" data-metodo="Efectivo en taquilla">
+              <svg class="icono-cp" aria-hidden="true"><use href="#cp-store"></use></svg>Efectivo en taquilla
+            </button>
+          </div>
+
+          <label class="aceptar" for="terminos">
+            <input type="checkbox" id="terminos" aria-describedby="error-terminos">
+            <span class="check-caja" aria-hidden="true"><svg class="icono-cp"><use href="#cp-check"></use></svg></span>
+            <span>Acepto <a href="#" id="abrir-terminos">términos y condiciones</a></span>
+          </label>
+          <p id="error-terminos" class="campo-error" hidden></p>
+
+          <button class="boton-confirmar" type="submit">Confirmar reservación</button>
+
+          <div class="compra-segura">
+            <svg class="icono-cp" aria-hidden="true"><use href="#cp-shield"></use></svg>
+            <p><strong>Pago simulado</strong><span>No solicitamos tarjetas ni procesamos cargos reales.</span></p>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="dialogo-terminos" class="dialogo" aria-labelledby="titulo-terminos">
+    <h2 id="titulo-terminos" class="cp-titulo">Términos y condiciones</h2>
+    <p>CinePass es un proyecto escolar. El pago es <strong>simulado</strong>: no se solicitan datos bancarios ni se realizan cargos.</p>
+    <p>Tus datos solo se guardan temporalmente en esta pestaña del navegador y no se envían a ningún servidor.</p>
+    <form method="dialog"><button class="boton-confirmar boton-chico">Entendido</button></form>
+  </dialog>
+
+  <div id="toast" class="cp-toast" role="status" aria-live="polite"></div>
+
+  <footer class="cp-site-footer">
+    <div class="cp-site-footer-inner">
+      <p><strong>CinePass</strong> · <span data-version>v0.2.0 · Primera proyección</span> · Proyecto final de Programación Web</p>
+      <nav class="cp-site-footer-links" aria-label="Enlaces del proyecto">
+        <a href="roadmap.html">Roadmap</a>
+        <a href="demo.html">Video conceptual</a>
+        <a href="index.html">Volver al inicio ↑</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -31,22 +31,10 @@ a { color: inherit; text-decoration: none; }
     border-bottom: 1px solid #303b50;
 }
 
-/* Logotipo de CinePass */
 .logo {
     font-size: 28px;
     font-weight: bold;
     white-space: nowrap;
-
-    display: flex;
-    align-items: center;
-}
-
-/* Imagen SVG junto al nombre */
-.logo img {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-    flex-shrink: 0;
 }
 
 .logo span, .menu a:hover, .menu .activo { color: var(--principal); }

@@ -1,0 +1,367 @@
+/* =========================================================
+   CINEPASS - CONFIRMAR RESERVACIÓN
+   Recreación del diseño conceptual (paso 3 de 3).
+   ========================================================= */
+
+.conf-columnas {
+    width: min(1345px, 92%);
+    margin: 0 auto;
+    padding-top: 14px;
+    grid-template-columns: minmax(0, 707px) 1px minmax(0, 577px);
+    column-gap: 30px;
+    justify-content: space-between;
+}
+
+.conf-columnas .cp-divisor { margin-top: 44px; margin-bottom: 6px; }
+
+.conf-titulo { font-size: 46px; margin-bottom: 18px; }
+
+/* ---------- Pasos ---------- */
+.pasos {
+    list-style: none;
+    margin: 0 0 22px;
+    padding: 0;
+    width: 640px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+}
+
+.pasos::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 16.66%;
+    right: 16.66%;
+    height: 3px;
+    background: var(--menta);
+    border-radius: 2px;
+}
+
+.paso {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 18px;
+    color: #d3d9e3;
+}
+
+.paso-circulo {
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border: 2.5px solid var(--menta);
+    border-radius: 50%;
+    background: #0e1626;
+    color: var(--menta);
+    font-family: var(--titulos);
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.paso-circulo .icono-cp { width: 20px; height: 20px; stroke-width: 2.6; }
+.paso-activo .paso-texto { color: #fff; font-weight: 800; }
+
+/* ---------- Tarjeta de resumen ---------- */
+.resumen {
+    display: grid;
+    grid-template-columns: 282px 1fr;
+    gap: 28px;
+    padding: 24px 22px 24px 20px;
+    background: linear-gradient(180deg, rgba(23, 33, 52, .92), rgba(17, 25, 41, .92));
+    border: 1px solid #2f3b54;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+}
+
+.resumen-poster {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #3a465e;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .45);
+}
+
+.resumen-titulo {
+    font-family: var(--titulos);
+    font-weight: 800;
+    font-size: 30px;
+    margin: 2px 0 10px;
+}
+
+.resumen-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 15px;
+    color: #d6dce6;
+}
+
+.insignia {
+    padding: 2px 9px;
+    border-radius: 5px;
+    background: var(--coral);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.meta-sep { color: #6d7890; }
+.meta-item { display: inline-flex; align-items: center; gap: 6px; }
+
+.resumen-calificacion {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 12px 0 12px;
+}
+
+.estrella { color: var(--amarillo); font-size: 22px; line-height: 1; }
+.resumen-calificacion strong { font-size: 20px; font-weight: 800; }
+.resumen-calificacion small { color: #c5ccd8; font-size: 13.5px; }
+
+.resumen-sinopsis {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1.5px solid #3a4660;
+    color: #e4e8ef;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.resumen-datos div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.resumen-datos dt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #dbe0e8;
+    font-size: 16px;
+}
+
+.resumen-datos dt .icono-cp { width: 22px; height: 22px; color: #c7cedb; stroke-width: 1.6; }
+.resumen-datos dd { font-weight: 800; font-size: 17px; }
+
+.resumen-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1.5px solid #3a4660;
+}
+
+.resumen-total span { font-size: 23px; font-weight: 800; }
+.resumen-total strong {
+    font-family: var(--titulos);
+    font-size: 29px;
+    font-weight: 800;
+    color: var(--menta);
+}
+
+/* ---------- Formulario ---------- */
+.conf-cliente { padding-top: 32px; }
+
+.subtitulo-form { font-size: 26px; margin-bottom: 12px; }
+
+.campo { margin-bottom: 8px; }
+
+.campo label,
+.etiqueta-campo {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 800;
+    font-size: 16.5px;
+}
+
+.campo em { font-weight: 400; }
+.asterisco { color: var(--coral); }
+
+.campo-caja {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    height: 39px;
+    padding: 0 16px 0 20px;
+    background: #1a2337;
+    border: 1.5px solid #3a4660;
+    border-radius: 8px;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.campo-caja .icono-cp { width: 23px; height: 23px; color: #c9d0dc; stroke-width: 1.6; }
+
+.campo-caja:focus-within {
+    border-color: var(--menta);
+    box-shadow: 0 0 0 3px rgba(63, 224, 176, .15);
+}
+
+.campo-caja input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 17px;
+}
+
+.campo-caja input::placeholder { color: #c3cad6; opacity: .8; }
+
+.campo-caja:has(input[aria-invalid="true"]) { border-color: var(--coral); }
+
+.campo-error {
+    margin-top: 4px;
+    color: #ff8b97;
+    font-size: 13.5px;
+}
+
+.separador {
+    margin: 18px 0 12px;
+    border: 0;
+    border-top: 1.5px solid #34405a;
+}
+
+/* Métodos de pago */
+.metodos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.18fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.metodo {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 10px;
+    background: #121a2c;
+    border: 1.5px solid #3a4660;
+    border-radius: 8px;
+    color: #e7ebf2;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color .2s, background-color .2s;
+}
+
+.metodo .icono-cp { width: 26px; height: 26px; stroke-width: 1.6; }
+.icono-paypal { width: 22px; height: 22px; fill: currentColor; stroke: currentColor; stroke-width: .4; }
+.metodo:hover { border-color: #5a6984; }
+
+.metodo.seleccionado {
+    background: rgba(63, 224, 176, .1);
+    border: 2px solid var(--menta);
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Casilla de términos */
+.aceptar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 18px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.aceptar input { position: absolute; opacity: 0; width: 24px; height: 24px; margin: 0; cursor: pointer; }
+
+.check-caja {
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #4a5874;
+    border-radius: 5px;
+    background: #121a2c;
+    color: #0c1322;
+    transition: background-color .15s, border-color .15s;
+}
+
+.check-caja .icono-cp { width: 18px; height: 18px; stroke-width: 3; opacity: 0; }
+.aceptar input:checked + .check-caja { background: var(--menta); border-color: var(--menta); }
+.aceptar input:checked + .check-caja .icono-cp { opacity: 1; }
+.aceptar input:focus-visible + .check-caja { outline: 3px solid rgba(63, 224, 176, .55); outline-offset: 2px; }
+.aceptar a { color: var(--menta); text-decoration: underline; text-underline-offset: 3px; }
+
+.boton-confirmar {
+    width: 100%;
+    height: 56px;
+    margin-top: 18px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ee3a4f, #f2475b);
+    color: #fff;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: .2px;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(239, 63, 82, .25);
+    transition: filter .2s, transform .1s;
+}
+
+.boton-confirmar:hover { filter: brightness(1.07); }
+.boton-confirmar:active { transform: translateY(1px); }
+.boton-confirmar:disabled { filter: grayscale(.5) brightness(.8); cursor: wait; }
+
+.compra-segura {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 18px;
+    padding-left: 6px;
+}
+
+.compra-segura .icono-cp { width: 36px; height: 36px; color: var(--menta); stroke-width: 1.5; }
+.compra-segura p { display: flex; flex-direction: column; }
+.compra-segura strong { font-size: 17px; }
+.compra-segura span { color: #d3d9e3; font-size: 16px; }
+
+/* Diálogo de términos */
+.dialogo {
+    max-width: 460px;
+    padding: 26px 28px;
+    border: 1px solid #34405a;
+    border-radius: 16px;
+    background: #121b2d;
+    color: var(--texto);
+}
+
+.dialogo::backdrop { background: rgba(5, 8, 16, .7); }
+.dialogo h2 { font-size: 22px; margin-bottom: 12px; }
+.dialogo p { margin-bottom: 10px; color: #d3d9e3; }
+.boton-chico { height: 44px; font-size: 17px; margin-top: 8px; }
+
+/* ---------- Adaptable ---------- */
+@media (max-width: 1180px) {
+    .conf-columnas { grid-template-columns: minmax(0, 1fr); row-gap: 26px; }
+    .conf-columnas .cp-divisor { display: none; }
+    .conf-cliente { padding-top: 0; max-width: 640px; }
+}
+
+@media (max-width: 680px) {
+    .conf-titulo { font-size: 32px; }
+    .resumen { grid-template-columns: minmax(0, 1fr); }
+    .pasos { width: 100%; }
+    .resumen-poster { max-width: 260px; margin: 0 auto; }
+    .metodos { grid-template-columns: 1fr; }
+    .paso { font-size: 15px; }
+}
