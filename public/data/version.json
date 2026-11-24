@@ -1,7 +1,7 @@
 {
-  "version": "0.2.0",
-  "nombre": "Primera proyección",
+  "version": "0.4.0",
+  "nombre": "Boleto en mano",
   "estado": "Prototipo público",
-  "fecha": "2026-11-21",
-  "descripcion": "Inicio y Cartelera V2 publicados. El resto de módulos y la API permanecen en desarrollo."
+  "fecha": "2026-11-23",
+  "descripcion": "Cuatro de siete pantallas publicadas: Inicio, Cartelera, Confirmación y Mis boletos. Reservaciones DEMO en el navegador; Detalle, Asientos y Administración pendientes. Base de datos y CRUD después de v0.7.0."
 }
